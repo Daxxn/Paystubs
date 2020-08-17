@@ -1,0 +1,443 @@
+﻿<Window x:Class="PaystubJsonApp.AddView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaystubJsonApp"
+        mc:Ignorable="d" KeyDown="Window_KeyDown"
+        Title="Add Paystubs" Height="600" Width="400">
+	<!--<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Styles/AddViewStyles.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>-->
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Style="{StaticResource border-test}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+
+				<CheckBox
+					Margin="0,0,4,0"
+					Grid.Column="0"
+					VerticalAlignment="Center"
+					IsTabStop="False"
+					IsChecked="{Binding Path=DatesInOrder}"
+				>
+					Auto-Fill Dates
+				</CheckBox>
+
+				<Border Grid.Column="1" Visibility="{Binding Path=AutoDatesVisible}" Style="{StaticResource units-border}">
+					<Grid
+						Margin="0,0,4,0"
+						Grid.Column="1"
+						Visibility="{Binding Path=AutoDatesVisible}"
+					>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock
+							Grid.Column="0"
+							Style="{StaticResource all-title-block}"
+						>
+						Pay Period
+						</TextBlock>
+						<TextBox
+							GotKeyboardFocus="TextBox_GotKeyboardFocus"
+							IsTabStop="False"
+							Style="{StaticResource base-box}"
+							Grid.Column="1"
+							Text="{Binding Path=PayPeriod}"
+						/>
+						<TextBlock
+							Style="{StaticResource units-block}"
+							Grid.Column="2"
+							HorizontalAlignment="Center"
+						>Days</TextBlock>
+					</Grid>
+				</Border>
+
+				<Border Grid.Column="2" Style="{StaticResource units-border}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock
+							Grid.Column="0"
+							Style="{StaticResource all-title-block}"
+						>
+							Pay Rate
+						</TextBlock>
+						<TextBox
+							GotKeyboardFocus="TextBox_GotKeyboardFocus"
+							IsTabStop="False"
+							Style="{StaticResource base-box}"
+							Grid.Column="1"
+							Text="{Binding Path=PayRate}"
+						/>
+						<TextBlock
+							Style="{StaticResource units-block}"
+							Grid.Column="2"
+							HorizontalAlignment="Center"
+						>$</TextBlock>
+					</Grid>
+				</Border>
+			</Grid>
+		</Border>
+
+		<!--#region Main Data Entry Form-->
+		<Border Grid.Row="1">
+			<Grid
+				Grid.Row="1"
+				x:Name="MainDataEntryGrid"
+				Grid.IsSharedSizeScope="True"
+			>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition SharedSizeGroup="Title"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition SharedSizeGroup="units"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock
+					Grid.Column="0"
+					Grid.Row="0"
+					Style="{StaticResource stub-title}"
+				>
+					Gross
+				</TextBlock>
+				<TextBox
+					GotKeyboardFocus="TextBox_GotKeyboardFocus"
+					TabIndex="1"
+					Grid.Column="1"
+					Grid.Row="0"
+					Text="{
+						Binding Path=Gross,
+						UpdateSourceTrigger=PropertyChanged
+					}"
+					Style="{StaticResource stub-input}"
+				/>
+				<TextBlock
+					Grid.Column="2"
+					Grid.Row="0"
+					Style="{StaticResource stub-units}"
+				>$</TextBlock>
+				<TextBlock
+					Style="{StaticResource stub-title}"
+					Grid.Column="0"
+					Grid.Row="1"
+				>
+					Net
+				</TextBlock>
+				<TextBox
+					GotKeyboardFocus="TextBox_GotKeyboardFocus"
+					TabIndex="2"
+					Style="{StaticResource stub-input}"
+					Grid.Column="1"
+					Grid.Row="1"
+					Text="{
+						Binding Path=Net,
+						UpdateSourceTrigger=PropertyChanged
+					}"
+				/>
+				<TextBlock
+					Style="{StaticResource stub-units}"
+					Grid.Column="2"
+					Grid.Row="1"
+				>$</TextBlock>
+				<TextBlock
+					Style="{StaticResource stub-title}"
+					Grid.Column="0"
+					Grid.Row="2"
+				>
+					Hours
+				</TextBlock>
+				<TextBox
+					GotKeyboardFocus="TextBox_GotKeyboardFocus"
+					TabIndex="3"
+					Style="{StaticResource stub-input}"
+					Grid.Column="1"
+					Grid.Row="2"
+					Text="{
+						Binding Path=Hours,
+						UpdateSourceTrigger=PropertyChanged
+					}"
+				/>
+				<TextBlock
+					Style="{StaticResource stub-units}"
+					Grid.Column="2"
+					Grid.Row="2"
+				>. Hrs</TextBlock>
+				<TextBlock
+					Style="{StaticResource stub-title}"
+					Grid.Column="0"
+					Grid.Row="3"
+				>
+					Flatrate Hours
+				</TextBlock>
+				<TextBox
+					GotKeyboardFocus="TextBox_GotKeyboardFocus"
+					TabIndex="4"
+					Style="{StaticResource stub-input}"
+					Grid.Column="1"
+					Grid.Row="3"
+					Text="{
+						Binding Path=FlatrateHours,
+						UpdateSourceTrigger=PropertyChanged
+					}"
+				/>
+				<TextBlock
+					Style="{StaticResource stub-units}"
+					Grid.Column="2"
+					Grid.Row="3"
+				>. Hrs</TextBlock>
+
+				<Grid
+					Grid.Row="4"
+					Grid.ColumnSpan="3"
+					Visibility="{Binding Path=SingleDatesVisible}"
+				>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition SharedSizeGroup="Title"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition SharedSizeGroup="units"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock
+						Style="{StaticResource stub-title}"
+						Grid.Column="0"
+						Grid.Row="0"
+					>
+						Start Date
+					</TextBlock>
+					<DatePicker
+						Style="{StaticResource stub-date}"
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						Grid.Row="0"
+						SelectedDate="{
+							Binding Path=StartDate,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<TextBlock
+						Style="{StaticResource stub-title}"
+						Grid.Column="0"
+						Grid.Row="1"
+					>
+						End Date
+					</TextBlock>
+					<DatePicker
+						Style="{StaticResource stub-date}"
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						Grid.Row="1"
+						SelectedDate="{
+							Binding Path=EndDate,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<TextBlock
+						Style="{StaticResource stub-title}"
+						Grid.Column="0"
+						Grid.Row="2"
+					>
+						Pay Period
+					</TextBlock>
+					<TextBox
+						GotKeyboardFocus="TextBox_GotKeyboardFocus"
+						Style="{StaticResource stub-input}"
+						Grid.Row="2"
+						Grid.Column="1"
+						Text="{
+							Binding Path=PayPeriod,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<TextBlock
+						Style="{StaticResource stub-units}"
+						Grid.Row="2"
+						Grid.Column="2"
+					>Days</TextBlock>
+				</Grid>
+				<Grid
+					Grid.Row="5"
+					Grid.ColumnSpan="3"
+					Visibility="{Binding Path=AutoDatesVisible}"
+				>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition SharedSizeGroup="Title"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition SharedSizeGroup="units"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock
+						Style="{StaticResource stub-title}"
+						Grid.Row="1"
+						Grid.Column="0"
+					>
+						Start Of Pay Date
+					</TextBlock>
+					<DatePicker
+						Style="{StaticResource stub-date}"
+						Grid.Row="1"
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						SelectedDate="{
+							Binding Path=AutoStartDate,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+				</Grid>
+				<Button
+					IsTabStop="False"
+					Style="{StaticResource add-stub-button}"
+					x:Name="AddNewPaystubButton"
+					Grid.ColumnSpan="3"
+					Grid.Row="6"
+				>
+					Add Paystub
+				</Button>
+			</Grid>
+		</Border>
+		<!--#endregion-->
+
+		<!--#region Entries Data Grid-->
+		<Border Grid.Row="2">
+			<DataGrid
+				IsTabStop="False"
+				KeyboardNavigation.TabNavigation="None"
+				ItemsSource="{Binding Path=NewPaystubs}"
+				AutoGenerateColumns="False"
+				CanUserAddRows="False"
+				CanUserDeleteRows="False"
+				GridLinesVisibility="Horizontal"
+				AreRowDetailsFrozen="True"
+			>
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						KeyboardNavigation.TabNavigation="None"
+						Header="Gross"
+						Binding="{Binding Path=Gross}"
+					/>
+					<DataGridTextColumn
+						KeyboardNavigation.TabNavigation="None"
+						Header="Net"
+						Binding="{Binding Path=Net}"
+					/>
+					<DataGridTextColumn
+						KeyboardNavigation.TabNavigation="None"
+						Header="Hours"
+						Binding="{Binding Path=Hours}"
+					/>
+					<DataGridTextColumn
+						Header="Flatrate Hours"
+						Binding="{Binding Path=FlatrateHours}"
+						KeyboardNavigation.TabNavigation="None"
+					/>
+					<DataGridTemplateColumn
+						Header="Start"
+						KeyboardNavigation.TabNavigation="None"
+					>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Path=StartDate, StringFormat=M/dd/yy}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+						<DataGridTemplateColumn.CellEditingTemplate>
+							<DataTemplate>
+								<DatePicker SelectedDate="{Binding Path=StartDate}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellEditingTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn
+						Header="End"
+						KeyboardNavigation.TabNavigation="None"
+					>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Path=EndDate, StringFormat=M/dd/yy}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+						<DataGridTemplateColumn.CellEditingTemplate>
+							<DataTemplate>
+								<DatePicker SelectedDate="{Binding Path=EndDate}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellEditingTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn
+						KeyboardNavigation.TabNavigation="None"
+					>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<Button IsTabStop="False" Click="DeletePaystub">
+									Delete
+								</Button>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Border>
+		<!--#endregion-->
+
+		<!--#region Window Controls-->
+		<Border Grid.Row="3">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Button
+					x:Name="CancelAddButton"
+					Grid.Column="0"
+					Style="{StaticResource add-window-button}"
+				>
+					Cancel
+				</Button>
+				<Button
+					x:Name="SaveAddButton"
+					Grid.Column="1"
+					Style="{StaticResource add-window-button}"
+				>
+					Add
+				</Button>
+			</Grid>
+		</Border>
+		<!--#endregion-->
+	</Grid>
+</Window>

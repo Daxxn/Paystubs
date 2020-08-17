@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaystubJsonApp", "PaystubJsonApp\PaystubJsonApp.csproj", "{213194A1-09A3-4593-97D3-EBBB2AA97C94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugNoLog|Any CPU = DebugNoLog|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.DebugNoLog|Any CPU.ActiveCfg = DebugNoLog|Any CPU
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.DebugNoLog|Any CPU.Build.0 = DebugNoLog|Any CPU
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213194A1-09A3-4593-97D3-EBBB2AA97C94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E460B94D-D021-4B06-84EA-CC1DABD44331}
+	EndGlobalSection
+EndGlobal

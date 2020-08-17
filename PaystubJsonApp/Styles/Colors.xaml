@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--#region Solid Brushes-->
+	<SolidColorBrush x:Key="main-border-brush" Color="{DynamicResource main-border-color}"/>
+	<SolidColorBrush x:Key="units-border-brush" Color="{DynamicResource units-border-color}"/>
+	<SolidColorBrush x:Key="base-box-bg-brush" Color="{DynamicResource base-box-bg-color}"/>
+	<SolidColorBrush x:Key="stub-box-bg-brush" Color="{DynamicResource stub-box-bg-color}"/>
+	<SolidColorBrush x:Key="stub-date-bg-brush" Color="{DynamicResource stub-date-bg-color}"/>
+	<SolidColorBrush x:Key="button-hover-bg-brush" Color="{DynamicResource button-hover-bg-color}"/>
+	<SolidColorBrush x:Key="button-bg-brush" Color="{DynamicResource base-button-color }"/>
+	<SolidColorBrush x:Key="base-good-brush" Color="{DynamicResource base-good-color}"/>
+	<SolidColorBrush x:Key="base-disabled-brush" Color="{DynamicResource base-disabled-color}"/>
+	<!--#endregion-->
+	
+	<!--#region Colors-->
+	<Color x:Key="main-border-color">#225da1</Color>
+	<Color x:Key="units-border-color">#6184c2</Color>
+	<Color x:Key="base-box-bg-color">#f0f6ff</Color>
+	<Color x:Key="stub-box-bg-color">#f0f2ff</Color>
+	<Color x:Key="stub-date-bg-color">#c0d0ff</Color>
+	<Color x:Key="button-hover-bg-color">#9fb9e6</Color>
+	<Color x:Key="mouse-over-color">#8aa1ff</Color>
+	<Color x:Key="base-button-color">#c2d4ff</Color>
+	<Color x:Key="base-good-color">#8fffd2</Color>
+	<Color x:Key="base-disabled-color">#ffdcc2</Color>
+	<!--#endregion-->
+</ResourceDictionary>

@@ -1,0 +1,17 @@
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\bin\Debug\PaystubJsonApp.exe.config
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\bin\Debug\PaystubJsonApp.exe
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\bin\Debug\PaystubJsonApp.pdb
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.csprojAssemblyReference.cache
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\AddView.g.cs
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\MainWindow.g.cs
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\App.g.cs
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp_MarkupCompile.cache
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp_MarkupCompile.lref
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\AddView.baml
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\MainWindow.baml
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.g.resources
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.Properties.Resources.resources
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.csproj.GenerateResource.cache
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.csproj.CoreCompileInputs.cache
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.exe
+C:\Users\Cody\source\repos\GitHub\PaystubJsonApp\PaystubJsonApp\obj\Debug\PaystubJsonApp.pdb

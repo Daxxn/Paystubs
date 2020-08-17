@@ -1,0 +1,270 @@
+﻿<Window x:Class="PaystubJsonApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaystubJsonApp"
+        mc:Ignorable="d"
+        Title="Paystubs" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Styles/MainWindowStyles.xaml"/>
+				<ResourceDictionary Source="Styles/Colors.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<!--#region Main Controls Pannel-->
+		<Border Style="{StaticResource main-controls-border}">
+			<Grid Grid.Column="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock
+					Grid.Row="0"
+					Style="{StaticResource main-title}"
+				>
+				Menu
+				</TextBlock>
+				
+				<Border Grid.Row="1" Margin="4">
+					<Grid>
+						<Button
+							Style="{StaticResource CustomButton}"
+							x:Name="test" Grid.Row="1"
+						>
+							Add Menu
+						</Button>
+					</Grid>
+				</Border>
+
+				<Border Grid.Row="2" Margin="4">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock
+							Grid.Row="0"
+							Grid.Column="0"
+							 Style="{StaticResource file-title}"
+						>
+							File Control
+						</TextBlock>
+
+						<Border Grid.Column="0" Grid.Row="1">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<TextBlock>
+									File Location
+								</TextBlock>
+								<CheckBox
+									Grid.Row="0"
+									Grid.Column="1"
+									IsChecked="{Binding Path=OverwriteFile}"
+								>
+									Overwrite
+								</CheckBox>
+								<TextBox
+									Text="{
+										Binding Path=SavePath,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+									Grid.Row="1"
+								>
+									<TextBox.Style>
+										<Style TargetType="TextBox">
+											<Style.Triggers>
+												<DataTrigger
+													Binding="{Binding Path=SavePathCorrect}"
+													Value="True"
+												>
+													<Setter
+														Property="Background"
+														Value="{StaticResource base-good-brush}"
+													/>
+												</DataTrigger>
+												<DataTrigger
+													Binding="{Binding Path=SavePathCorrect}"
+													Value="False"
+												>
+													<Setter
+														Property="Background"
+														Value="{StaticResource base-box-bg-brush}"
+													/>
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</TextBox.Style>
+								</TextBox>
+								<Button
+									x:Name="OpenSavePath"
+									Style="{StaticResource browse-button}"
+									Grid.Column="1"
+									Grid.Row="1"
+								>
+									Browse
+								</Button>
+							</Grid>
+						</Border>
+
+						<Border Grid.Row="2" Padding="2">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Button
+									Style="{StaticResource CustomButton}"
+									Grid.Column="0"
+									x:Name="OpenFileButton"
+								>
+									Open
+								</Button>
+								<Button
+									Style="{StaticResource CustomButton}"
+									Grid.Column="1"
+									x:Name="SaveFileButton"
+									IsEnabled="{
+										Binding Path=SavePathCorrect,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+								>
+									Save
+								</Button>
+							</Grid>
+						</Border>
+					</Grid>
+				</Border>
+			</Grid>
+		</Border>
+		<!--#endregion-->
+
+		<!--#region Data Grid-->
+		<Grid Grid.Column="1">
+			<DataGrid
+				x:Name="MainDataGrid"
+				ItemsSource="{Binding Path=Paystubs.Paystubs}"
+				SelectedItem="{Binding Path=SelectedPaystub}"
+				AutoGenerateColumns="False"
+				CanUserAddRows="False"
+			>
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Header="Gross"
+						Binding="{
+							Binding Path=Gross,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<DataGridTextColumn
+						Header="Net"
+						Binding="{
+							Binding Path=Net,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<DataGridTextColumn
+						Header="Hours"
+						Binding="{
+							Binding Path=Hours,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<DataGridTextColumn
+						Header="Flatrate Hours"
+						Binding="{
+							Binding Path=FlatrateHours,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<DataGridTextColumn
+						Header="Pay Rate"
+						Binding="{
+							Binding Path=Rate,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+					<DataGridTemplateColumn Header="Start Date">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock
+									Text="{
+										Binding Path=StartDate,
+										StringFormat=MM/dd/yy,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+								/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+						<DataGridTemplateColumn.CellEditingTemplate>
+							<DataTemplate>
+								<DatePicker
+									SelectedDate="{
+										Binding Path=StartDate,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+									IsTodayHighlighted="False"
+								/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellEditingTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn Header="End Date">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock
+									Text="{
+										Binding Path=EndDate,
+										StringFormat=MM/dd/yy,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+								/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+						<DataGridTemplateColumn.CellEditingTemplate>
+							<DataTemplate>
+								<DatePicker
+									SelectedDate="{
+										Binding Path=EndDate,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+									IsTodayHighlighted="False"
+								/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellEditingTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTextColumn
+						Header="Pay Period"
+						Binding="{
+							Binding Path=PayPeriod,
+							Mode=OneWay,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+					/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+		<!--#endregion-->
+    </Grid>
+</Window>
