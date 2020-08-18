@@ -88,7 +88,15 @@
     <Compile Include="FileControl\FileManager.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PaystubViewModel.cs" />
+    <Compile Include="ViewModels\RepairOrderViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\PaystubView.xaml.cs">
+      <DependentUpon>PaystubView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RepairOrderView.xaml.cs">
+      <DependentUpon>RepairOrderView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +129,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaystubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RepairOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
