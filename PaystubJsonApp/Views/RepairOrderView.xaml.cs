@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PaystubJsonApp.ViewModels;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,10 @@ namespace PaystubJsonApp.Views
     /// </summary>
     public partial class RepairOrderView : UserControl
     {
-        public RepairOrderView( )
+        public RepairOrderView( RepairOrderViewModel vm )
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

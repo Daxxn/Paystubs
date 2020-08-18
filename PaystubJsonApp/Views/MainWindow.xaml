@@ -4,15 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PaystubJsonApp"
+		xmlns:views="clr-namespace:PaystubJsonApp.Views"
         mc:Ignorable="d"
         Title="Paystubs" Height="450" Width="800">
-	<Grid>
+	<TabControl
+		x:Name="TabControl"
+		SelectionChanged="TabControl_SelectionChanged"
+		TabStripPlacement="Top"
+	>
+		<TabItem Header="Paystubs" x:Name="PaystubsTab">
+			<ContentControl x:Name="PaystubControl"/>
+		</TabItem>
+		<TabItem Header="Repair Orders" x:Name="RepairOrdersTab">
+			<ContentControl x:Name="RepairOrderControl"/>
+		</TabItem>
+	</TabControl>
+
+	<!--#region OLD-->
+	<!--<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
-		<!--#region Main Controls Pannel-->
+		--><!--#region Main Controls Pannel--><!--
 		<Border Style="{StaticResource main-controls-border}">
 			<Grid Grid.Column="0">
 				<Grid.RowDefinitions>
@@ -151,9 +166,9 @@
 				</Border>
 			</Grid>
 		</Border>
-		<!--#endregion-->
+		--><!--#endregion-->
 
-		<!--#region Data Grid-->
+		<!--#region Data Grid--><!--
 		<Grid Grid.Column="1">
 			<DataGrid
 				x:Name="MainDataGrid"
@@ -257,6 +272,7 @@
 				</DataGrid.Columns>
 			</DataGrid>
 		</Grid>
-		<!--#endregion-->
-    </Grid>
+		--><!--#endregion--><!--
+    </Grid>-->
+	<!--#endregion-->
 </Window>
