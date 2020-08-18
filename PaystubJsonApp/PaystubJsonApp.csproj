@@ -86,6 +86,8 @@
     <Compile Include="Debug\LogModel.cs" />
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
     <Compile Include="FileControl\FileManager.cs" />
+    <Compile Include="Models\ReapirOrders\RepairOrder.cs" />
+    <Compile Include="Models\ReapirOrders\RepairOrderCollection.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PaystubViewModel.cs" />
@@ -142,8 +144,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\PaystubCollection.cs" />
-    <Compile Include="Models\PaystubModel.cs" />
+    <Compile Include="Models\Paystubs\PaystubCollection.cs" />
+    <Compile Include="Models\Paystubs\PaystubModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

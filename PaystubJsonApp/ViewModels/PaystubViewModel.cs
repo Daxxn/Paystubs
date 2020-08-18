@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 using PaystubJsonApp.FileControl;
-using PaystubJsonApp.Models;
+using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.ViewModels.Events;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace PaystubJsonApp.ViewModels
     public class PaystubViewModel : ViewModelBase
     {
         #region - Fields & Properties
-        private PaystubCollection _paystubs;
+        private PaystubCollection _paystubCollection;
         private PaystubModel _selectedPaystub;
 
         private bool _notSaved;
@@ -35,7 +35,7 @@ namespace PaystubJsonApp.ViewModels
             }
             else
             {
-                Paystubs = new PaystubCollection(
+                PaystubCollection = new PaystubCollection(
                     AppSettings.Default.DefaultPayPeriod
                 );
             }
@@ -99,7 +99,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 FileManager.SaveFile(
                     SavePath,
-                    Paystubs,
+                    PaystubCollection,
                     AppSettings.Default.OverwriteFile
                 );
             }
@@ -119,7 +119,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 foreach (var paystub in e.NewPaystubs)
                 {
-                    Paystubs.Paystubs.Add(paystub);
+                    PaystubCollection.Paystubs.Add(paystub);
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace PaystubJsonApp.ViewModels
         /// </summary>
         private void BuildTempData( )
         {
-            Paystubs = new PaystubCollection(AppSettings.Default.DefaultPayPeriod)
+            PaystubCollection = new PaystubCollection(AppSettings.Default.DefaultPayPeriod)
             {
                 Paystubs = new ObservableCollection<PaystubModel>
                 {
@@ -185,7 +185,7 @@ namespace PaystubJsonApp.ViewModels
                         return;
                     }
                 }
-                Paystubs = FileManager.OpenFile(SavePath);
+                PaystubCollection = FileManager.OpenFile(SavePath);
                 NotSaved = false;
             }
             catch (Exception e)
@@ -200,14 +200,14 @@ namespace PaystubJsonApp.ViewModels
         #endregion
 
         #region - Full Properties
-        public PaystubCollection Paystubs
+        public PaystubCollection PaystubCollection
         {
-            get { return _paystubs; }
+            get { return _paystubCollection; }
             set
             {
-                _paystubs = value;
+                _paystubCollection = value;
                 NotSaved = true;
-                NotifyOfPropertyChange(nameof(Paystubs));
+                NotifyOfPropertyChange(nameof(PaystubCollection));
             }
         }
 

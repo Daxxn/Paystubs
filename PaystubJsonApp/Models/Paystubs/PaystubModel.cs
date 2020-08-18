@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PaystubJsonApp.Models
+namespace PaystubJsonApp.Models.Paystubs
 {
     public class PaystubModel
     {

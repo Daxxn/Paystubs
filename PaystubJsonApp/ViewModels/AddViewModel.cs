@@ -1,4 +1,4 @@
-﻿using PaystubJsonApp.Models;
+﻿using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.ViewModels.Events;
 using System;
 using System.Collections.Generic;

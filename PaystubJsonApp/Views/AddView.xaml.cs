@@ -1,4 +1,5 @@
-﻿using PaystubJsonApp.ViewModels;
+﻿using PaystubJsonApp.Models.Paystubs;
+using PaystubJsonApp.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -46,7 +47,7 @@ namespace PaystubJsonApp
         private void DeletePaystub( object sender, RoutedEventArgs e )
         {
             var btn = e.Source as Button;
-            var data = btn.DataContext as Models.PaystubModel;
+            var data = btn.DataContext as PaystubModel;
             var vm = DataContext as AddViewModel;
 
             vm.HandlePaystubDelete(data.PaystubID);

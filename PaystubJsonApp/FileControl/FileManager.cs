@@ -1,4 +1,5 @@
-﻿using PaystubJsonApp.Models;
+﻿using PaystubJsonApp.Models.Paystubs;
+using PaystubJsonApp.Models.RepairOrders;
 using Newtonsoft.Json;
 
 using System;
