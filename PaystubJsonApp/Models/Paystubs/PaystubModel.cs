@@ -2,10 +2,9 @@
 
 namespace PaystubJsonApp.Models.Paystubs
 {
-    public class PaystubModel
+    public class PaystubModel : ModelBase
     {
         #region - Fields & Properties
-        public Guid PaystubID { get; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal Gross { get; set; }
@@ -19,7 +18,6 @@ namespace PaystubJsonApp.Models.Paystubs
         #region - Constructors
         public PaystubModel( )
         {
-            PaystubID = Guid.NewGuid();
             StartDate = DateTime.MinValue;
             EndDate = DateTime.MinValue;
         }

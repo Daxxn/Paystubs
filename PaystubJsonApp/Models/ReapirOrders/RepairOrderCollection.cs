@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace PaystubJsonApp.Models.RepairOrders
 {
-    public class RepairOrderCollection
+    public class RepairOrderCollection : ModelBase
     {
         #region - Fields & Properties
-        public ObservableCollection<RepairOrder> RepairOrders { get; set; }
+        public ObservableCollection<RepairOrder> _repairOrders;
         #endregion
 
         #region - Constructors
@@ -22,7 +22,14 @@ namespace PaystubJsonApp.Models.RepairOrders
         #endregion
 
         #region - Full Properties
-
+        public ObservableCollection<RepairOrder> RepairOrders
+        {
+            get { return _repairOrders; }
+            set
+            {
+                _repairOrders = value;
+            }
+        }
         #endregion
     }
 }

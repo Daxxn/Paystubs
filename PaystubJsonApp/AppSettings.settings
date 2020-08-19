@@ -20,5 +20,11 @@
     <Setting Name="Delimiter" Type="System.String" Scope="User">
       <Value Profile="(Default)">|</Value>
     </Setting>
+    <Setting Name="UseDefaultWorkItems" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DeafultWorkItemsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

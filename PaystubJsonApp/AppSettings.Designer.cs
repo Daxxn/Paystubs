@@ -94,5 +94,29 @@ namespace PaystubJsonApp {
                 this["Delimiter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseDefaultWorkItems {
+            get {
+                return ((bool)(this["UseDefaultWorkItems"]));
+            }
+            set {
+                this["UseDefaultWorkItems"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string DeafultWorkItemsPath {
+            get {
+                return ((string)(this["DeafultWorkItemsPath"]));
+            }
+            set {
+                this["DeafultWorkItemsPath"] = value;
+            }
+        }
     }
 }

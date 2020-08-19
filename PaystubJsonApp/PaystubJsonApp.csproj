@@ -86,8 +86,11 @@
     <Compile Include="Debug\LogModel.cs" />
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
     <Compile Include="FileControl\FileManager.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\ReapirOrders\RepairOrder.cs" />
     <Compile Include="Models\ReapirOrders\RepairOrderCollection.cs" />
+    <Compile Include="Models\ReapirOrders\WorkItem.cs" />
+    <Compile Include="Models\ReapirOrders\WorkProvider.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PaystubViewModel.cs" />

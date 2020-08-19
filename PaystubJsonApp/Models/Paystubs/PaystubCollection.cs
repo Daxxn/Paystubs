@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PaystubJsonApp.Models.Paystubs
 {
-    public class PaystubCollection
+    public class PaystubCollection : ModelBase
     {
         #region - Fields & Properties
         public ObservableCollection<PaystubModel> Paystubs { get; set; }

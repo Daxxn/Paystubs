@@ -50,7 +50,7 @@ namespace PaystubJsonApp
             var data = btn.DataContext as PaystubModel;
             var vm = DataContext as AddViewModel;
 
-            vm.HandlePaystubDelete(data.PaystubID);
+            vm.HandlePaystubDelete(data._Id);
         }
 
         private void Window_KeyDown( object sender, KeyEventArgs e )

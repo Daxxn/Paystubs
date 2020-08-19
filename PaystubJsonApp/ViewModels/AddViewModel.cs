@@ -76,7 +76,7 @@ namespace PaystubJsonApp.ViewModels
 
         public void HandlePaystubDelete( Guid id )
         {
-            NewPaystubs.Remove(NewPaystubs.First(stub => stub.PaystubID == id));
+            NewPaystubs.Remove(NewPaystubs.First(stub => stub._Id == id));
             HasChanged = true;
         }
 

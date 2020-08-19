@@ -157,7 +157,7 @@
 		<Grid Grid.Column="1">
 			<DataGrid
 				x:Name="MainDataGrid"
-				ItemsSource="{Binding Path=Paystubs.Paystubs}"
+				ItemsSource="{Binding Path=PaystubCollection.Paystubs}"
 				SelectedItem="{Binding Path=SelectedPaystub}"
 				AutoGenerateColumns="False"
 				CanUserAddRows="False"
