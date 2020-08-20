@@ -1,5 +1,4 @@
 ﻿using PaystubJsonApp.Models.ReapirOrders;
-using PaystubJsonApp.Models.RepairOrders;
 using PaystubJsonApp.ViewModels;
 
 using System;
@@ -27,15 +26,15 @@ namespace PaystubJsonApp.Controls
     {
 
 
-        public List<WorkItem> Work
+        public ObservableCollection<WorkItem> Work
         {
-            get { return (List<WorkItem>)GetValue(WorkProperty); }
+            get { return (ObservableCollection<WorkItem>)GetValue(WorkProperty); }
             set { SetValue(WorkProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Work.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorkProperty =
-            DependencyProperty.Register("Work", typeof(List<WorkItem>), typeof(WorkItemControl), new PropertyMetadata(null));
+            DependencyProperty.Register("Work", typeof(ObservableCollection<WorkItem>), typeof(WorkItemControl), new PropertyMetadata(null));
 
 
 

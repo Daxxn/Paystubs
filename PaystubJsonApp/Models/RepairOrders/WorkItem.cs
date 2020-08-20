@@ -9,8 +9,8 @@ namespace PaystubJsonApp.Models.ReapirOrders
     public class WorkItem : ModelBase
     {
         #region - Fields & Properties
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
         public double FlatRateTime { get; set; }
         public int WorkIdNumber { get; set; }
         #endregion
@@ -22,7 +22,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #region - Methods
         public override string ToString( )
         {
-            return $"{Name} : {Description.Substring(0, 10)}... , {FlatRateTime:G6)}";
+            return $"{Name} : {(Description.Length > 10 ? Description.Substring(0, 10) : Description)}... , {FlatRateTime:G6)}";
         }
         #endregion
 

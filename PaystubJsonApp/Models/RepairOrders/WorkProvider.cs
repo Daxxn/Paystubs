@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
                 }
                 : new Dictionary<int, WorkItem>();
 
-        public List<WorkItem> WorkData { get; private set; }
+        public ObservableCollection<WorkItem> WorkData { get; private set; }
         #endregion
 
         #region - Constructors
@@ -32,7 +33,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
 
             if (Debug.Debug.Instance.Active)
             {
-                WorkData = WorkContainer.Values.ToList();
+                WorkData = new ObservableCollection<WorkItem>(WorkContainer.Values);
             }
         }
         #endregion
