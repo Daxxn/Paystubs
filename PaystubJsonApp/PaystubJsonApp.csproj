@@ -87,10 +87,10 @@
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
     <Compile Include="FileControl\FileManager.cs" />
     <Compile Include="Models\ModelBase.cs" />
-    <Compile Include="Models\ReapirOrders\RepairOrder.cs" />
-    <Compile Include="Models\ReapirOrders\RepairOrderCollection.cs" />
-    <Compile Include="Models\ReapirOrders\WorkItem.cs" />
-    <Compile Include="Models\ReapirOrders\WorkProvider.cs" />
+    <Compile Include="Models\RepairOrders\RepairOrder.cs" />
+    <Compile Include="Models\RepairOrders\RepairOrderCollection.cs" />
+    <Compile Include="Models\RepairOrders\WorkItem.cs" />
+    <Compile Include="Models\RepairOrders\WorkProvider.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PaystubViewModel.cs" />
@@ -102,6 +102,10 @@
     <Compile Include="Views\RepairOrderView.xaml.cs">
       <DependentUpon>RepairOrderView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Styles\RepairOrderStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

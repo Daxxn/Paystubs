@@ -26,6 +26,12 @@ namespace PaystubJsonApp.Views
         {
             InitializeComponent();
             DataContext = vm;
+            InitializeEvents(vm);
+        }
+
+        private void InitializeEvents( RepairOrderViewModel vm )
+        {
+            AddRepairOrdersButton.Click += vm.AddRepairOrder;
         }
     }
 }

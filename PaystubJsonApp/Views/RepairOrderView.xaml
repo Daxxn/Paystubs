@@ -1,58 +1,300 @@
 ﻿<UserControl x:Class="PaystubJsonApp.Views.RepairOrderView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PaystubJsonApp.Views"
-             mc:Ignorable="d" Background="Beige"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:PaystubJsonApp.Views"
+			 mc:Ignorable="d" Background="AliceBlue"
+			 d:DesignHeight="450" d:DesignWidth="800">
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<Border Grid.Row="1">
-			<!--<DataGrid
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock
+						Grid.Row="0"
+						Grid.ColumnSpan="2"
+						Style="{StaticResource group-title}"
+					>
+						New Repair Order
+					</TextBlock>
+					<TextBlock Grid.Row="1" Grid.Column="0">RO Number</TextBlock>
+					<TextBox
+						Style="{StaticResource RO-new-input}"
+						Grid.Column="1"
+						Grid.Row="1"
+						Text="{Binding Path=NewRepairOrder.RONumber}"
+						/>
+					<TextBlock Grid.Row="2">Date</TextBlock>
+					<DatePicker
+						Grid.Row="2"
+						Grid.Column="1"
+						SelectedDate="{Binding Path=NewRepairOrder.Date}"
+					/>
+
+					<Button
+						x:Name="AddRepairOrdersButton"
+						Grid.Row="5"
+						Grid.ColumnSpan="2"
+						Style="{StaticResource CustomButton}"
+					>
+						Add
+					</Button>
+				</Grid>
+			</Border>
+
+			<!--<Border Grid.Column="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.ColumnSpan="2" Style="{StaticResource new-RO-title}">
+						Save File
+					</TextBlock>
+
+					<TextBlock Grid.Row="1" Grid.Column="1">Location</TextBlock>
+					<TextBlock Grid.Row="2">Test</TextBlock>
+				</Grid>
+			</Border>-->
+
+			<Border Grid.Column="1" Margin="4">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock
+							Grid.Row="0"
+							Grid.Column="0"
+							 Style="{StaticResource group-title}"
+						>
+							File Control
+					</TextBlock>
+
+					<Border Grid.Column="0" Grid.Row="1">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+							
+							<TextBlock>
+									File Location
+							</TextBlock>
+							<CheckBox
+								Grid.Row="0"
+								Grid.Column="1"
+								IsChecked="{Binding Path=OverwriteFile}"
+							>
+								Overwrite
+							</CheckBox>
+							<Grid Grid.Row="1" Grid.ColumnSpan="2">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								  
+								<TextBox
+									Text="{
+										Binding Path=SavePath,
+										UpdateSourceTrigger=PropertyChanged
+									}"
+									Grid.Row="1"
+									Grid.ColumnSpan="2"
+								>
+									<TextBox.Style>
+										<Style TargetType="TextBox" BasedOn="{StaticResource save-location}">
+											<Style.Triggers>
+												<DataTrigger
+													Binding="{Binding Path=SavePathCorrect}"
+													Value="True"
+												>
+													<Setter
+														Property="Background"
+														Value="{StaticResource base-good-brush}"
+													/>
+												</DataTrigger>
+												<DataTrigger
+													Binding="{Binding Path=SavePathCorrect}"
+													Value="False"
+												>
+													<Setter
+														Property="Background"
+														Value="{StaticResource base-box-bg-brush}"
+													/>
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</TextBox.Style>
+								</TextBox>
+								<Button
+									x:Name="OpenSavePath"
+									Style="{StaticResource browse-button}"
+									Grid.Column="1"
+									Grid.Row="1"
+								>
+									Browse
+								</Button>
+							</Grid>
+						</Grid>
+					</Border>
+
+					<Border Grid.Row="2" Padding="2">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Button
+								Style="{StaticResource CustomButton}"
+								Grid.Column="0"
+								x:Name="OpenFileButton"
+							>
+								Open
+							</Button>
+							<Button
+								Style="{StaticResource CustomButton}"
+								Grid.Column="1"
+								x:Name="SaveFileButton"
+								IsEnabled="{
+									Binding Path=SavePathCorrect,
+									UpdateSourceTrigger=PropertyChanged
+								}"
+							>
+								Save
+							</Button>
+						</Grid>
+					</Border>
+				</Grid>
+			</Border>
+		</Grid>
+
+		<Border Grid.Row="1" Visibility="{Binding Path=NoROs}">
+			<TextBlock >No RepairOrders</TextBlock>
+		</Border>
+
+		<Border Grid.Row="1" Style="{StaticResource RO-items-control-border}">
+			<ItemsControl
 				ItemsSource="{Binding Path=RepairOrderCollection.RepairOrders}"
-				AutoGenerateColumns="True"
-			/>-->
-			<ItemsControl ItemsSource="{Binding Path=RepairOrderCollection.RepairOrders}">
+			>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<Border>
+						<Border Style="{StaticResource RO-Item-base-border}">
 							<Grid>
 								<Grid.RowDefinitions>
 									<RowDefinition Height="Auto"/>
 									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
 								</Grid.RowDefinitions>
 
-								<Grid Grid.Row="0" Grid.IsSharedSizeScope="True">
+								<TextBlock Grid.Row="0">Repair Order</TextBlock>
+
+								<Grid Grid.Row="1" Grid.IsSharedSizeScope="True">
 									<Grid.ColumnDefinitions>
-										<ColumnDefinition SharedSizeGroup="Name_Title"/>
-										<ColumnDefinition SharedSizeGroup="Name_Value"/>
+										<ColumnDefinition SharedSizeGroup="Number_Title"/>
+										<ColumnDefinition SharedSizeGroup="Date_Title"/>
 									</Grid.ColumnDefinitions>
 
-									<TextBlock Grid.Column="0">RO Number</TextBlock>
-									<TextBlock Grid.Column="1" Text="{Binding Path=RONumber}"/>
+									<StackPanel Orientation="Horizontal" Grid.Column="0">
+										<TextBlock Grid.Column="0">RO Number</TextBlock>
+										<TextBlock
+											Grid.Column="1"
+											Text="{Binding Path=RONumber}"
+											HorizontalAlignment="Right"
+										/>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal" Grid.Column="1">
+										<TextBlock Grid.Column="2">Date</TextBlock>
+										<DatePicker
+											Grid.Column="3"
+											HorizontalAlignment="Right"
+											SelectedDate="{Binding Path=Date}"
+											IsTodayHighlighted="False"
+										/>
+									</StackPanel>
 								</Grid>
 
-								<Border Grid.Row="1">
+								<Expander
+									Grid.Row="2"
+									ExpandDirection="Down"
+									Style="{StaticResource RO-item-work-expander}"
+								>
+									<Expander.Header>
+										<TextBlock>Test</TextBlock>
+									</Expander.Header>
 									<ItemsControl ItemsSource="{Binding Path=Work.WorkData}">
 										<ItemsControl.ItemTemplate>
 											<DataTemplate>
-												<StackPanel Orientation="Horizontal">
-													<TextBlock Text="{Binding Path=Name}"/>
-												</StackPanel>
+												<Border>
+													<Grid Grid.IsSharedSizeScope="True">
+														<Grid.ColumnDefinitions>
+															<ColumnDefinition SharedSizeGroup="ID_Title"/>
+															<ColumnDefinition SharedSizeGroup="ID_Val"/>
+															<ColumnDefinition SharedSizeGroup="Name_Title"/>
+															<ColumnDefinition SharedSizeGroup="Name_Val"/>
+															<ColumnDefinition SharedSizeGroup="Desc_Title"/>
+															<ColumnDefinition SharedSizeGroup="Desc_Val"/>
+															<ColumnDefinition SharedSizeGroup="Time_Title"/>
+															<ColumnDefinition SharedSizeGroup="Time_Val"/>
+														</Grid.ColumnDefinitions>
+
+														<TextBlock Grid.Column="0">ID Number</TextBlock>
+														<TextBox Grid.Column="1" Text="{Binding Path=WorkIdNumber}"/>
+														<TextBlock Grid.Column="2">Name</TextBlock>
+														<TextBox Grid.Column="3" Text="{Binding Path=Name}"/>
+														<TextBlock Grid.Column="4">Desc</TextBlock>
+														<TextBox Grid.Column="5" Text="{Binding Path=Description}"/>
+														<TextBlock Grid.Column="6">Flat Rate Time</TextBlock>
+														<TextBox Grid.Column="7" Text="{Binding Path=FlatRateTime}"/>
+													</Grid>
+												</Border>
 											</DataTemplate>
 										</ItemsControl.ItemTemplate>
 									</ItemsControl>
-								</Border>
+								</Expander>
 							</Grid>
 						</Border>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</Border>
-    </Grid>
+	</Grid>
 </UserControl>

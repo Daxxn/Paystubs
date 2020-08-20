@@ -1,6 +1,35 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+	<Style TargetType="{x:Type TextBlock}">
+		<Setter Property="Padding" Value="1"/>
+		<Setter Property="Margin" Value="1,0,2,0"/>
+	</Style>
+
+	<Style TargetType="TextBlock" x:Key="title">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="FontWeight" Value="SemiBold"/>
+	</Style>
+
+	<Style
+		TargetType="TextBlock"
+		x:Key="main-title"
+		BasedOn="{StaticResource title}"
+	>
+		<Setter Property="FontSize" Value="18"/>
+	</Style>
+
+	<Style
+		TargetType="TextBlock"
+		x:Key="group-title"
+		BasedOn="{StaticResource title}"
+	>
+		<Setter Property="FontSize" Value="14"/>
+	</Style>
+	
+	
+
 	<Style TargetType="Button" x:Key="CustomButton">
 		<Setter Property="Padding" Value="3"/>
 		<Setter Property="FontSize" Value="12"/>

@@ -29,7 +29,7 @@ namespace PaystubJsonApp.ViewModels
         {
             OverwriteFile = AppSettings.Default.OverwriteFile;
             NotSaved = false;
-            if (Debug.Debug.Instance.Active)
+            if (Debug.Debug.Instance.DefaultValues)
             {
                 BuildTempData();
             }
