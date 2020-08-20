@@ -16,6 +16,7 @@ namespace PaystubJsonApp.ViewModels
         #region - Fields & Properties
         private RepairOrderCollection _repairOrderCollection;
         private RepairOrder _newRepairOrder;
+
         #endregion
 
         #region - Constructors
@@ -34,6 +35,28 @@ namespace PaystubJsonApp.ViewModels
                 RONumber = 111,
                 Date = new DateTime(2020, 5, 5)
             });;
+        }
+
+        public void RemoveWorkFromRepairOrder( WorkItem item, RepairOrder currentRO )
+        {
+            if (currentRO != null)
+            {
+                if (item != null)
+                {
+                    currentRO.Work.RemoveWorkItem(item, false);
+                }
+            }
+        }
+
+        public void AddWorkToRepairOrder( WorkItem selectedItem, RepairOrder currentRO )
+        {
+            if (currentRO != null)
+            {
+                if (!currentRO.Work.WorkData.Contains(selectedItem))
+                {
+                    currentRO.Work.AddWorkItem(selectedItem);
+                }
+            }
         }
 
         private void BuildDebugInstanceData( )

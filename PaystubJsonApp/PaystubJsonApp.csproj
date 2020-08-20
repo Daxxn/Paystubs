@@ -77,6 +77,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WorkItemControl.xaml.cs">
+      <DependentUpon>WorkItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DebugSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -102,6 +105,14 @@
     <Compile Include="Views\RepairOrderView.xaml.cs">
       <DependentUpon>RepairOrderView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\WorkItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\RepairOrderStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\MainWindowStyles.xaml">
+    <Page Include="Styles\PaystubStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,6 +10,8 @@
 	<SolidColorBrush x:Key="button-bg-brush" Color="{DynamicResource base-button-color }"/>
 	<SolidColorBrush x:Key="base-good-brush" Color="{DynamicResource base-good-color}"/>
 	<SolidColorBrush x:Key="base-disabled-brush" Color="{DynamicResource base-disabled-color}"/>
+	<SolidColorBrush x:Key="eye-base-brush" Color="{DynamicResource eye-base-color}"/>
+	<SolidColorBrush x:Key="eye-open-brush" Color="{DynamicResource eye-open-color}"/>
 	<!--#endregion-->
 	
 	<!--#region Colors-->
@@ -23,5 +25,7 @@
 	<Color x:Key="base-button-color">#c2d4ff</Color>
 	<Color x:Key="base-good-color">#8fffd2</Color>
 	<Color x:Key="base-disabled-color">#ffdcc2</Color>
+	<Color x:Key="eye-base-color">#3e79de</Color>
+	<Color x:Key="eye-open-color">#de7e3e</Color>
 	<!--#endregion-->
 </ResourceDictionary>

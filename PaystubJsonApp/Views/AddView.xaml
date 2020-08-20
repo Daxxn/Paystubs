@@ -6,13 +6,6 @@
         xmlns:local="clr-namespace:PaystubJsonApp"
         mc:Ignorable="d" KeyDown="Window_KeyDown"
         Title="Add Paystubs" Height="600" Width="400">
-	<!--<Window.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="Styles/AddViewStyles.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-	</Window.Resources>-->
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>

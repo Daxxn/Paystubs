@@ -16,17 +16,9 @@
 		<Border Style="{StaticResource main-controls-border}">
 			<Grid Grid.Column="0">
 				<Grid.RowDefinitions>
-					<!--<RowDefinition Height="Auto"/>-->
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-
-				<!--<TextBlock
-					Grid.Row="0"
-					Style="{StaticResource main-title}"
-				>
-				Menu
-				</TextBlock>-->
 
 				<Border Grid.Row="0" Margin="4">
 					<Grid>

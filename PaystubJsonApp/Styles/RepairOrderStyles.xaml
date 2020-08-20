@@ -17,20 +17,43 @@
 		<Setter Property="MinWidth" Value="200"/>
 	</Style>
 
+	<Style TargetType="TextBox" x:Key="RO-item-number">
+		<Setter Property="Width" Value="45"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+	</Style>
+
+	<Style TargetType="TextBox" x:Key="work-item-input">
+		<Setter Property="MinWidth" Value="50"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+	</Style>
+
+	<Style TargetType="TextBox" x:Key="work-item-desc" BasedOn="{StaticResource work-item-input}">
+		<Setter Property="MaxLines" Value="4"/>
+		<Setter Property="AcceptsReturn" Value="True"/>
+	</Style>
+
 	<Style TargetType="DatePicker" x:Key="new-RO-date">
 		<Setter Property="MaxWidth" Value="120"/>
 		<Setter Property="MinWidth" Value="55"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Margin" Value="0,1,0,1"/>
 	</Style>
 	
 	<Style TargetType="Border" x:Key="RO-item-border-spacing">
 		<Setter Property="Padding" Value="2"/>
 		<Setter Property="Margin" Value="1"/>
 	</Style>
+
+	<Style TargetType="Border" x:Key="new-RO-border" BasedOn="{StaticResource RO-item-border-spacing}">
+		<Setter Property="BorderBrush" Value="{StaticResource main-border-brush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+	</Style>
 	
 	<Style TargetType="Border" x:Key="RO-Item-base-border" BasedOn="{StaticResource RO-item-border-spacing}">
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="BorderBrush" Value="Blue"/>
 		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="4"/>
 	</Style>
 
 	<Style TargetType="Border" x:Key="RO-items-control-border">
@@ -47,7 +70,7 @@
 			<Setter.Value>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-						<TextBlock>Test</TextBlock>
+						<TextBlock FontWeight="DemiBold">Work</TextBlock>
 					</StackPanel>
 				</DataTemplate>
 			</Setter.Value>

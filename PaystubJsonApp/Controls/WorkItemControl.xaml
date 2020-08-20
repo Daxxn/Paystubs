@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="PaystubJsonApp.Controls.WorkItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PaystubJsonApp.Controls"
+			 x:Name="root"
+             mc:Ignorable="d">
+	<UserControl.ContentTemplate>
+		<DataTemplate>
+			<ItemsControl ItemsSource="{Binding Work, ElementName=root}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Border Margin="2">
+							<Grid Grid.IsSharedSizeScope="True">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition SharedSizeGroup="ID_Title"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition SharedSizeGroup="Name_Title"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition SharedSizeGroup="Desc_Title"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition SharedSizeGroup="Time_Title"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0">ID Number</TextBlock>
+								<TextBox
+									Grid.Column="1"
+									Text="{Binding Path=WorkIdNumber}"
+									Style="{StaticResource work-item-input}"
+								/>
+								<TextBlock Grid.Column="2">Name</TextBlock>
+								<TextBox
+									Grid.Column="3"
+									Text="{Binding Path=Name}"
+									Style="{StaticResource work-item-input}"
+								/>
+								<TextBlock Grid.Column="4">Desc</TextBlock>
+								<TextBox
+									Grid.Column="5"
+									Text="{Binding Path=Description}"
+									Style="{StaticResource work-item-desc}"
+								/>
+								<TextBlock Grid.Column="6">Flat Rate Time</TextBlock>
+								<TextBox
+									Grid.Column="7"
+									Text="{Binding Path=FlatRateTime}"
+									Style="{StaticResource work-item-input}"
+								/>
+								<Button Grid.Column="8" Click="Button_Click" >
+									Delete
+								</Button>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</DataTemplate>
+	</UserControl.ContentTemplate>
+</UserControl>
