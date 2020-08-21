@@ -90,6 +90,7 @@
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
     <Compile Include="FileControl\FileDialogController.cs" />
     <Compile Include="FileControl\FileManager.cs" />
+    <Compile Include="Logic\TextHelper.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\RepairOrders\RepairOrder.cs" />
     <Compile Include="Models\RepairOrders\RepairOrderCollection.cs" />
@@ -100,11 +101,15 @@
     <Compile Include="ViewModels\PaystubViewModel.cs" />
     <Compile Include="ViewModels\RepairOrderViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WorkOrderViewModel.cs" />
     <Compile Include="Views\PaystubView.xaml.cs">
       <DependentUpon>PaystubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RepairOrderView.xaml.cs">
       <DependentUpon>RepairOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkOrderView.xaml.cs">
+      <DependentUpon>WorkOrderView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\WorkItemControl.xaml">
       <SubType>Designer</SubType>
@@ -115,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\RepairOrderStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\WorkOrderStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RepairOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

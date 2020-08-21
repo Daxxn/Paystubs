@@ -9,7 +9,6 @@
         Title="Paystubs" Height="450" Width="800">
 	<TabControl
 		x:Name="TabControl"
-		SelectionChanged="TabControl_SelectionChanged"
 		TabStripPlacement="Top"
 	>
 		<TabItem Header="Paystubs" x:Name="PaystubsTab">
@@ -17,6 +16,9 @@
 		</TabItem>
 		<TabItem Header="Repair Orders" x:Name="RepairOrdersTab">
 			<ContentControl x:Name="RepairOrderControl"/>
+		</TabItem>
+		<TabItem Header="Work Orders" Name="WorkOrdersTab">
+			<ContentControl x:Name="WorkOrderControl"/>
 		</TabItem>
 	</TabControl>
 </Window>

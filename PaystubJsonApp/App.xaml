@@ -10,6 +10,7 @@
 				<ResourceDictionary Source="Styles/PaystubStyles.xaml"/>
 				<ResourceDictionary Source="Styles/RepairOrderStyles.xaml"/>
 				<ResourceDictionary Source="Styles/AddViewStyles.xaml"/>
+				<ResourceDictionary Source="Styles/WorkOrderStyles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

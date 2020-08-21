@@ -18,22 +18,21 @@ using System.Windows.Shapes;
 namespace PaystubJsonApp.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WorkOrderView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WorkOrderView : UserControl
     {
-        public MainWindow( MainViewModel vm )
+        public WorkOrderView( WorkOrderViewModel vm )
         {
             InitializeComponent();
             DataContext = vm;
-            //InitializeEvents(vm);
-            PaystubControl.Content = new PaystubView(vm.PaystubVM);
-            RepairOrderControl.Content = new RepairOrderView(vm.RepairOrderVM);
-            WorkOrderControl.Content = new WorkOrderView(vm.WorkOrderVM);
+            InitializeEvents(vm);
         }
 
-        //private void InitializeEvents( MainViewModel vm )
-        //{
-        //}
+        private void InitializeEvents( WorkOrderViewModel vm )
+        {
+            WorkOrdersDataGrid.CellEditEnding += vm.EditEnding;
+            AddWorkItemButton.Click += vm.AddWorkItem;
+        }
     }
 }

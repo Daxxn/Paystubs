@@ -11,7 +11,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #region - Fields & Properties
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
-        public double FlatRateTime { get; set; }
+        public double _flatRateTime;
         public int WorkIdNumber { get; set; }
         #endregion
 
@@ -24,7 +24,11 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #endregion
 
         #region - Full Properties
-
+        public double FlatRateTime
+        {
+            get => _flatRateTime;
+            set => _flatRateTime = value;
+        }
         #endregion
     }
 }

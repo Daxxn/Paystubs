@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style TargetType="TextBox" x:Key="work-item-desc-edit">
+		<Setter Property="AcceptsReturn" Value="True"/>
+		<Setter Property="MaxLines" Value="4"/>
+	</Style>
+</ResourceDictionary>

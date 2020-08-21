@@ -14,9 +14,9 @@ namespace PaystubJsonApp.Models.ReapirOrders
             Debug.Debug.Instance.Active
                 ? new Dictionary<int, WorkItem>
                 {
-                    { 001, new WorkItem{ Name="Test 1" } },
-                    { 002, new WorkItem{ Name="Test 2" } },
-                    { 003, new WorkItem{ Name="Test 3" } },
+                    { 1, new WorkItem{ WorkIdNumber=1, Name="Test 1" } },
+                    { 2, new WorkItem{ WorkIdNumber=2, Name="Test 2" } },
+                    { 3, new WorkItem{ WorkIdNumber=3, Name="Test 3" } },
                 }
                 : new Dictionary<int, WorkItem>();
 
@@ -51,6 +51,20 @@ namespace PaystubJsonApp.Models.ReapirOrders
                 WorkContainer[ item.WorkIdNumber ] = item;
             }
             WorkData.Add(WorkContainer[ item.WorkIdNumber ]);
+        }
+        public static bool AddNewWorkItem( WorkItem item )
+        {
+            bool success = WorkContainer.TryGetValue(item.WorkIdNumber, out WorkItem foundItem);
+            if ( !success )
+            {
+                WorkContainer.Add(item.WorkIdNumber, item);
+            }
+            return !success;
+        }
+
+        public static void DeleteWorkItem( WorkItem item )
+        {
+            WorkContainer.Remove(item.WorkIdNumber);
         }
 
         public void RemoveWorkItem( WorkItem item, bool clearBase )
