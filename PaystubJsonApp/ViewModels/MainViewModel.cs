@@ -3,6 +3,7 @@
 using PaystubJsonApp.FileControl;
 using PaystubJsonApp.Models;
 using PaystubJsonApp.ViewModels.Events;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +15,7 @@ using System.Windows;
 
 namespace PaystubJsonApp.ViewModels
 {
-    public class MainViewModel: ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         #region - Fields & Properties
         private PaystubViewModel _paystubVM;
@@ -32,7 +33,7 @@ namespace PaystubJsonApp.ViewModels
         #region - Methods
         public ViewModelBase GetVM( string vmName )
         {
-            switch (vmName)
+            switch ( vmName )
             {
                 case "Paystubs":
                     return PaystubVM;
@@ -47,7 +48,7 @@ namespace PaystubJsonApp.ViewModels
         #region - Full Properties
         public PaystubViewModel PaystubVM
         {
-            get { return _paystubVM; }
+            get => _paystubVM;
             set
             {
                 _paystubVM = value;
@@ -57,7 +58,7 @@ namespace PaystubJsonApp.ViewModels
 
         public RepairOrderViewModel RepairOrderVM
         {
-            get { return _repairOrderVM; }
+            get => _repairOrderVM;
             set
             {
                 _repairOrderVM = value;

@@ -20,10 +20,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #endregion
 
         #region - Methods
-        public override string ToString( )
-        {
-            return $"{Name} : {(Description.Length > 10 ? Description.Substring(0, 10) : Description)}... , {FlatRateTime:G6)}";
-        }
+        public override string ToString( ) => $"{Name} : {( Description.Length > 10 ? Description.Substring(0, 10) : Description )}... , {FlatRateTime:G6)}";
         #endregion
 
         #region - Full Properties

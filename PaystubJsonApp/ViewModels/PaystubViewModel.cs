@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
+
 using PaystubJsonApp.FileControl;
 using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.ViewModels.Events;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +31,7 @@ namespace PaystubJsonApp.ViewModels
         {
             OverwriteFile = AppSettings.Default.OverwriteFile;
             NotSaved = false;
-            if (Debug.Debug.Instance.DefaultValues)
+            if ( Debug.Debug.Instance.DefaultValues )
             {
                 BuildTempData();
             }
@@ -43,81 +45,33 @@ namespace PaystubJsonApp.ViewModels
         #endregion
 
         #region - Methods
-        public void HandleCellChanged( object sender, EventArgs e )
-        {
-            NotSaved = true;
-        }
+        public void HandleCellChanged( object sender, EventArgs e ) => NotSaved = true;
 
-        public void HandleOpenSavePath( object sender, EventArgs e )
-        {
-            SaveFileDialog dialog = new SaveFileDialog
-            {
-                InitialDirectory = AppSettings.Default.DefaultSavePath,
-                Title = "Save Location",
-                CheckPathExists = false,
-                CheckFileExists = false,
-                OverwritePrompt = false,
-                CreatePrompt = false,
-                DefaultExt = FileManager.Extension,
-                AddExtension = true,
-                Filter = FileManager.FilterString
-            };
-
-            if (dialog.ShowDialog() == true)
-            {
-                SavePath = dialog.FileName;
-            }
-        }
+        public void HandleOpenSavePath( object sender, EventArgs e ) => SavePath = new FileDialogController<PaystubCollection>().SaveFileDialog();//SaveFileDialog dialog = new SaveFileDialog//{//    InitialDirectory = AppSettings.Default.DefaultSavePath,//    Title = "Save Location",//    CheckPathExists = false,//    CheckFileExists = false,//    OverwritePrompt = false,//    CreatePrompt = false,//    DefaultExt = FileManager.Extension,//    AddExtension = true,//    Filter = FileManager.FilterString//};//if (dialog.ShowDialog() == true)//{//    SavePath = dialog.FileName;//}
 
         public void HandleOpenFile( object sender, EventArgs e )
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            FileDialogController<PaystubCollection> opener = new FileDialogController<PaystubCollection>();
+            (string newPath, PaystubCollection newPaystubs) = opener.OpenFile(NotSaved);
+            if ( newPath != null && newPaystubs != null )
             {
-                InitialDirectory = AppSettings.Default.DefaultSavePath,
-                Multiselect = false,
-                DefaultExt = FileManager.Extension,
-                AddExtension = true,
-                Title = "Open Paystub File",
-                Filter = FileManager.FilterString
-            };
-
-            if (dialog.ShowDialog() == true)
-            {
-                SavePath = dialog.FileName;
-                OpenFile();
+                SavePath = newPath;
+                PaystubCollection = newPaystubs;
             }
-            Debug.Debug.Instance.Post(
-                "Message",
-                "Open Dialog Result",
-                new string[] { dialog.FileName }
-            );
+            NotSaved = false;
         }
 
         public void HandleSaveFile( object sender, EventArgs e )
         {
-            try
-            {
-                FileManager.SaveFile(
-                    SavePath,
-                    PaystubCollection,
-                    AppSettings.Default.OverwriteFile
-                );
-            }
-            catch (Exception exe)
-            {
-                Debug.Debug.Instance.Post(
-                    "Error",
-                    exe.Message,
-                    new string[] { exe.GetType().Name, SavePath, e.GetType().Name }
-                );
-            }
+            FileDialogController<PaystubCollection> saver = new FileDialogController<PaystubCollection>(PaystubCollection);
+            saver.SaveFile(SavePath);
         }
 
         public void AddNewPaystubs( object sender, AddPaystubsEventArgs e )
         {
-            if (e?.NewPaystubs.Count() > 0)
+            if ( e?.NewPaystubs.Count() > 0 )
             {
-                foreach (var paystub in e.NewPaystubs)
+                foreach ( PaystubModel paystub in e.NewPaystubs )
                 {
                     PaystubCollection.Paystubs.Add(paystub);
                 }
@@ -127,11 +81,9 @@ namespace PaystubJsonApp.ViewModels
         /// <summary>
         /// Initializes a test PaystubCollection when Debug mode is active.
         /// </summary>
-        private void BuildTempData( )
+        private void BuildTempData( ) => PaystubCollection = new PaystubCollection(AppSettings.Default.DefaultPayPeriod)
         {
-            PaystubCollection = new PaystubCollection(AppSettings.Default.DefaultPayPeriod)
-            {
-                Paystubs = new ObservableCollection<PaystubModel>
+            Paystubs = new ObservableCollection<PaystubModel>
                 {
                     new PaystubModel
                     {
@@ -144,65 +96,13 @@ namespace PaystubJsonApp.ViewModels
                         EndDate = new DateTime(2020, 1, 14)
                     }
                 }
-            };
-        }
-
-        private bool CheckFileName( string path )
-        {
-            if (path?.Length > 0)
-            {
-                if (Directory.Exists(path))
-                {
-                    return true;
-                }
-
-                if (!File.Exists(path))
-                {
-                    var temp = Path.GetDirectoryName(path);
-                    return Directory.Exists(temp);
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public void OpenFile( )
-        {
-            try
-            {
-                if (NotSaved)
-                {
-                    var result = MessageBox.Show(
-                        "Somethings not saved. Open anyway?",
-                        "Careful!",
-                        MessageBoxButton.OKCancel
-                    );
-                    if (result == MessageBoxResult.Cancel)
-                    {
-                        return;
-                    }
-                }
-                PaystubCollection = FileManager.OpenFile(SavePath);
-                NotSaved = false;
-            }
-            catch (Exception e)
-            {
-                Debug.Debug.Instance.Post(
-                    "Error",
-                    e.Message,
-                    new string[] { e.GetType().Name, SavePath }
-                );
-            }
-        }
+        };
         #endregion
 
         #region - Full Properties
         public PaystubCollection PaystubCollection
         {
-            get { return _paystubCollection; }
+            get => _paystubCollection;
             set
             {
                 _paystubCollection = value;
@@ -213,7 +113,7 @@ namespace PaystubJsonApp.ViewModels
 
         public PaystubModel SelectedPaystub
         {
-            get { return _selectedPaystub; }
+            get => _selectedPaystub;
             set
             {
                 _selectedPaystub = value;
@@ -223,7 +123,7 @@ namespace PaystubJsonApp.ViewModels
 
         public bool NotSaved
         {
-            get { return _notSaved; }
+            get => _notSaved;
             set
             {
                 _notSaved = value;
@@ -238,7 +138,7 @@ namespace PaystubJsonApp.ViewModels
 
         public string SavePath
         {
-            get { return _savePath; }
+            get => _savePath;
             set
             {
                 _savePath = value;
@@ -247,17 +147,11 @@ namespace PaystubJsonApp.ViewModels
             }
         }
 
-        public bool SavePathCorrect
-        {
-            get
-            {
-                return CheckFileName(SavePath);
-            }
-        }
+        public bool SavePathCorrect => FileDialogController<PaystubCollection>.CheckFilePath(SavePath);
 
         public bool OverwriteFile
         {
-            get { return _overwriteFile; }
+            get => _overwriteFile;
             set
             {
                 _overwriteFile = value;

@@ -88,6 +88,7 @@
     <Compile Include="Debug\Debug.cs" />
     <Compile Include="Debug\LogModel.cs" />
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
+    <Compile Include="FileControl\FileDialogController.cs" />
     <Compile Include="FileControl\FileManager.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\RepairOrders\RepairOrder.cs" />
@@ -198,5 +199,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

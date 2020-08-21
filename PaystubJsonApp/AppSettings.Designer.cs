@@ -62,12 +62,12 @@ namespace PaystubJsonApp {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(".json|.pst|.stb")]
-        public string FileExtensions {
+        public string PaystubFileExtensions {
             get {
-                return ((string)(this["FileExtensions"]));
+                return ((string)(this["PaystubFileExtensions"]));
             }
             set {
-                this["FileExtensions"] = value;
+                this["PaystubFileExtensions"] = value;
             }
         }
         
@@ -116,6 +116,30 @@ namespace PaystubJsonApp {
             }
             set {
                 this["DeafultWorkItemsPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".json|.ros|.rpo")]
+        public string RepairOrderFileExtensions {
+            get {
+                return ((string)(this["RepairOrderFileExtensions"]));
+            }
+            set {
+                this["RepairOrderFileExtensions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".json|.wos|wks")]
+        public string WorkOrderFileExtensions {
+            get {
+                return ((string)(this["WorkOrderFileExtensions"]));
+            }
+            set {
+                this["WorkOrderFileExtensions"] = value;
             }
         }
     }

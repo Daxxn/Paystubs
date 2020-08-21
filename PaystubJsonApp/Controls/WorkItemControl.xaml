@@ -27,29 +27,37 @@
 
 								<TextBlock Grid.Column="0">ID Number</TextBlock>
 								<TextBox
+									IsTabStop="False"
 									Grid.Column="1"
 									Text="{Binding Path=WorkIdNumber}"
 									Style="{StaticResource work-item-input}"
 								/>
 								<TextBlock Grid.Column="2">Name</TextBlock>
 								<TextBox
+									IsTabStop="False"
 									Grid.Column="3"
 									Text="{Binding Path=Name}"
 									Style="{StaticResource work-item-input}"
 								/>
 								<TextBlock Grid.Column="4">Desc</TextBlock>
 								<TextBox
+									IsTabStop="False"
 									Grid.Column="5"
 									Text="{Binding Path=Description}"
 									Style="{StaticResource work-item-desc}"
 								/>
 								<TextBlock Grid.Column="6">Flat Rate Time</TextBlock>
 								<TextBox
+									IsTabStop="False"
 									Grid.Column="7"
 									Text="{Binding Path=FlatRateTime}"
 									Style="{StaticResource work-item-input}"
 								/>
-								<Button Grid.Column="8" Click="Button_Click" >
+								<Button
+									Grid.Column="8"
+									Click="Button_Click"
+									IsTabStop="False"
+								>
 									Delete
 								</Button>
 							</Grid>

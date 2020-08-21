@@ -24,11 +24,8 @@ namespace PaystubJsonApp.Models.RepairOrders
         #region - Full Properties
         public ObservableCollection<RepairOrder> RepairOrders
         {
-            get { return _repairOrders; }
-            set
-            {
-                _repairOrders = value;
-            }
+            get => _repairOrders;
+            set => _repairOrders = value;
         }
         #endregion
     }

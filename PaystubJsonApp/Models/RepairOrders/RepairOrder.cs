@@ -29,11 +29,9 @@ namespace PaystubJsonApp.Models.RepairOrders
         {
             get
             {
-                if (Work is null || Work.WorkData is null)
-                {
-                    return 0;
-                }
-                return Work.WorkData.Sum(item => item.FlatRateTime);
+                return Work is null || Work.WorkData is null
+                    ? 0
+                    : Work.WorkData.Sum(item => item.FlatRateTime);
             }
         }
         #endregion

@@ -10,7 +10,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
     public class WorkProvider
     {
         #region - Fields & Properties
-        public static Dictionary<int, WorkItem> _workContainer { get; set; } =
+        private static Dictionary<int, WorkItem> _workContainer { get; set; } =
             Debug.Debug.Instance.Active
                 ? new Dictionary<int, WorkItem>
                 {
@@ -26,12 +26,12 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #region - Constructors
         public WorkProvider( )
         {
-            if (AppSettings.Default.UseDefaultWorkItems)
+            if ( AppSettings.Default.UseDefaultWorkItems )
             {
                 // Build default WorkItems...
             }
 
-            if (Debug.Debug.Instance.Active)
+            if ( Debug.Debug.Instance.Active )
             {
                 WorkData = new ObservableCollection<WorkItem>(WorkContainer.Values);
             }
@@ -42,7 +42,7 @@ namespace PaystubJsonApp.Models.ReapirOrders
         public void AddWorkItem( WorkItem item )
         {
             bool success = WorkContainer.TryGetValue(item.WorkIdNumber, out WorkItem foundItem);
-            if (!success)
+            if ( !success )
             {
                 WorkContainer.Add(item.WorkIdNumber, item);
             }
@@ -55,10 +55,10 @@ namespace PaystubJsonApp.Models.ReapirOrders
 
         public void RemoveWorkItem( WorkItem item, bool clearBase )
         {
-            if (clearBase)
+            if ( clearBase )
             {
                 bool success = WorkContainer.Remove(item.WorkIdNumber);
-                if (!success)
+                if ( !success )
                 {
                     Debug.Debug.Instance.Post(
                         "Error",
@@ -75,11 +75,8 @@ namespace PaystubJsonApp.Models.ReapirOrders
         #region - Full Properties
         public static Dictionary<int, WorkItem> WorkContainer
         {
-            get { return _workContainer; }
-            set
-            {
-                _workContainer = value;
-            }
+            get => _workContainer;
+            set => _workContainer = value;
         }
         #endregion
     }

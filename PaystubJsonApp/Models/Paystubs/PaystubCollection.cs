@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Navigation;
 
 namespace PaystubJsonApp.Models.Paystubs
 {
@@ -14,10 +15,7 @@ namespace PaystubJsonApp.Models.Paystubs
         #endregion
 
         #region - Constructors
-        public PaystubCollection( )
-        {
-            Paystubs = new ObservableCollection<PaystubModel>();
-        }
+        public PaystubCollection( ) => Paystubs = new ObservableCollection<PaystubModel>();
 
         public PaystubCollection( int days )
         {
@@ -29,30 +27,23 @@ namespace PaystubJsonApp.Models.Paystubs
         #region - Methods
         public decimal GetAverage( string prop )
         {
-            if (Paystubs is null || Paystubs.Count == 0)
+            if ( Paystubs is null || Paystubs.Count == 0 )
             {
                 return 0;
             }
 
-            if (prop == "gross")
+            switch ( prop )
             {
-                return Paystubs.Average(stub => stub.Gross);
-            }
-            else if (prop == "net")
-            {
-                return Paystubs.Average(stub => stub.Net);
-            }
-            else if (prop == "hours")
-            {
-                return (decimal)Paystubs.Average(stub => stub.Hours);
-            }
-            else if (prop == "flatrate")
-            {
-                return (decimal)Paystubs.Average(stub => stub.FlatrateHours);
-            }
-            else
-            {
-                throw new ArgumentException("Property given doesnt exist.");
+                case "gross":
+                    return Paystubs.Average(stub => stub.Gross);
+                case "net":
+                    return Paystubs.Average(stub => stub.Net);
+                case "hours":
+                    return ( decimal )Paystubs.Average(stub => stub.Hours);
+                case "flatrate":
+                    return ( decimal )Paystubs.Average(stub => stub.FlatrateHours);
+                default:
+                    throw new ArgumentException("Property given doesnt exist.");
             }
         }
 
@@ -69,13 +60,7 @@ namespace PaystubJsonApp.Models.Paystubs
         #endregion
 
         #region - Full Properties
-        public decimal AverageGross
-        {
-            get
-            {
-                return Paystubs is null || Paystubs.Count == 0 ? 0 : Paystubs.Average(stub => stub.Gross);
-            }
-        }
+        public decimal AverageGross => Paystubs is null || Paystubs.Count == 0 ? 0 : Paystubs.Average(stub => stub.Gross);
         #endregion
     }
 }

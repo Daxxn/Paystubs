@@ -1,5 +1,6 @@
 ﻿using PaystubJsonApp.ViewModels;
 using PaystubJsonApp.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,14 +20,11 @@ namespace PaystubJsonApp
         {
             Debug.Debug.Instance.OnStartup(e.Args);
             FileControl.FileManager.OnStartup();
-            var main = new MainWindow(new MainViewModel());
+            MainWindow main = new MainWindow(new MainViewModel());
             main.Show();
             Debug.Debug.Instance.Post("Startup Completed.");
         }
 
-        protected override void OnExit( ExitEventArgs e )
-        {
-            Debug.Debug.Instance.OnExit(e.ApplicationExitCode);
-        }
+        protected override void OnExit( ExitEventArgs e ) => Debug.Debug.Instance.OnExit(e.ApplicationExitCode);
     }
 }

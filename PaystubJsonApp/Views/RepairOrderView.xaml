@@ -46,17 +46,20 @@
 						Style="{StaticResource RO-new-input}"
 						Grid.Column="1"
 						Grid.Row="1"
+						TabIndex="1"
 						Text="{Binding Path=NewRepairOrder.RONumber}"
 						/>
 					<TextBlock Grid.Row="2">Date</TextBlock>
 					<DatePicker
 						Grid.Row="2"
 						Grid.Column="1"
+						TabIndex="2"
 						Style="{StaticResource new-RO-date}"
 						SelectedDate="{Binding Path=NewRepairOrder.Date}"
 					/>
 
 					<Button
+						IsTabStop="False"
 						x:Name="AddRepairOrdersButton"
 						Grid.Row="5"
 						Grid.ColumnSpan="2"
@@ -103,6 +106,7 @@
 									File Location
 							</TextBlock>
 							<CheckBox
+								IsTabStop="False"
 								Grid.Row="0"
 								Grid.Column="1"
 								IsChecked="{Binding Path=OverwriteFile}"
@@ -120,6 +124,7 @@
 										Binding Path=SavePath,
 										UpdateSourceTrigger=PropertyChanged
 									}"
+									IsTabStop="False"
 									Grid.Row="1"
 								>
 									<TextBox.Style>
@@ -150,6 +155,7 @@
 								<Button
 									x:Name="OpenSavePath"
 									Style="{StaticResource browse-button}"
+									IsTabStop="False"
 									Grid.Column="1"
 									Grid.Row="1"
 								>
@@ -197,6 +203,7 @@
 		<Border Grid.Row="1" Style="{StaticResource RO-items-control-border}">
 			<ScrollViewer>
 				<ItemsControl
+					IsTabStop="False"
 					x:Name="RepairOrdersControl"
 					ItemsSource="{Binding Path=RepairOrderCollection.RepairOrders}"
 				>
@@ -228,6 +235,7 @@
 											<TextBlock Grid.Column="0">RO Number</TextBlock>
 											<TextBox
 												Grid.Column="1"
+												IsTabStop="False"
 												Text="{Binding Path=RONumber}"
 												Style="{StaticResource RO-item-number}"
 											/>
@@ -235,6 +243,7 @@
 										<StackPanel Orientation="Horizontal" Grid.Column="1">
 											<TextBlock Grid.Column="2">Date</TextBlock>
 											<DatePicker
+												IsTabStop="False"
 												Grid.Column="3"
 												HorizontalAlignment="Right"
 												SelectedDate="{Binding Path=Date}"
@@ -245,11 +254,17 @@
 
 									<Expander
 										Grid.Row="2"
-										ExpandDirection="Down"
+										IsTabStop="False"
 										Style="{StaticResource RO-item-work-expander}"
 									>
 										<StackPanel Orientation="Vertical">
-											<ComboBox ItemsSource="{Binding Path=Work.WorkContainer.Values}" SelectionChanged="ComboBox_SelectionChanged">
+											<ComboBox
+												SelectionChanged="ComboBox_SelectionChanged"
+												IsTabStop="False"
+												ItemsSource="{
+													Binding Path=Work.WorkContainer.Values
+												}"
+											>
 												<ComboBox.ItemTemplate>
 													<DataTemplate>
 														<TextBlock Text="{Binding Path=Name}"/>

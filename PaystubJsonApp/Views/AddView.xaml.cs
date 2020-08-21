@@ -1,5 +1,6 @@
 ﻿using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.ViewModels;
+
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -30,15 +31,13 @@ namespace PaystubJsonApp
             SaveAddButton.Click += SaveAndCloseEvent;
         }
 
-        private void CloseEvent( object sender, EventArgs e )
-        {
+        private void CloseEvent( object sender, EventArgs e ) =>
             //OnClosing(new CancelEventArgs());
             Close();
-        }
 
         public void SaveAndCloseEvent( object sender, EventArgs e )
         {
-            var vm = DataContext as AddViewModel;
+            AddViewModel vm = DataContext as AddViewModel;
             SaveOnClose = true;
             vm.HandleSave();
             Close();
@@ -46,21 +45,21 @@ namespace PaystubJsonApp
 
         private void DeletePaystub( object sender, RoutedEventArgs e )
         {
-            var btn = e.Source as Button;
-            var data = btn.DataContext as PaystubModel;
-            var vm = DataContext as AddViewModel;
+            Button btn = e.Source as Button;
+            PaystubModel data = btn.DataContext as PaystubModel;
+            AddViewModel vm = DataContext as AddViewModel;
 
             vm.HandlePaystubDelete(data._Id);
         }
 
         private void Window_KeyDown( object sender, KeyEventArgs e )
         {
-            var vm = DataContext as AddViewModel;
-            if (e.Key == Key.Enter)
+            AddViewModel vm = DataContext as AddViewModel;
+            if ( e.Key == Key.Enter )
             {
                 vm.HandleCreateNewPaystub(sender, e);
             }
-            else if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.LeftShift)
+            else if ( e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.LeftShift )
             {
                 vm.ClearEntryValues();
             }
@@ -68,16 +67,16 @@ namespace PaystubJsonApp
 
         protected override void OnClosing( CancelEventArgs e )
         {
-            var vm = DataContext as AddViewModel;
-            if (vm.HasChanged && !SaveOnClose)
+            AddViewModel vm = DataContext as AddViewModel;
+            if ( vm.HasChanged && !SaveOnClose )
             {
-                var result = MessageBox.Show(
+                MessageBoxResult result = MessageBox.Show(
                     "Paystubs were created. Do you want to get rid of them?",
                     "U sure there bud!?",
                     MessageBoxButton.YesNo
                 );
 
-                if (result == MessageBoxResult.No)
+                if ( result == MessageBoxResult.No )
                 {
                     e.Cancel = true;
                 }
@@ -87,13 +86,13 @@ namespace PaystubJsonApp
 
         private void TextBox_GotFocus( object sender, RoutedEventArgs e )
         {
-            var textBox = e.Source as TextBox;
+            TextBox textBox = e.Source as TextBox;
             Console.WriteLine($"Selection Changed: {textBox.Text}");
         }
 
         private void TextBox_GotKeyboardFocus( object sender, KeyboardFocusChangedEventArgs e )
         {
-            var textBox = e.Source as TextBox;
+            TextBox textBox = e.Source as TextBox;
             textBox.SelectAll();
         }
     }

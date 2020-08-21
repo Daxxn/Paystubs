@@ -15,10 +15,7 @@ namespace PaystubJsonApp.ViewModels.Events
         #endregion
 
         #region - Constructors
-        public AddPaystubsEventArgs( IEnumerable<PaystubModel> newPaystubs )
-        {
-            NewPaystubs = newPaystubs;
-        }
+        public AddPaystubsEventArgs( IEnumerable<PaystubModel> newPaystubs ) => NewPaystubs = newPaystubs;
         #endregion
 
         #region - Methods

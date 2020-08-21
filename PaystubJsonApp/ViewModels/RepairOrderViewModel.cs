@@ -1,4 +1,6 @@
-﻿using PaystubJsonApp.Models.ReapirOrders;
+﻿using PaystubJsonApp.FileControl;
+using PaystubJsonApp.Models.Paystubs;
+using PaystubJsonApp.Models.ReapirOrders;
 using PaystubJsonApp.Models.RepairOrders;
 
 using System;
@@ -17,6 +19,10 @@ namespace PaystubJsonApp.ViewModels
         private RepairOrderCollection _repairOrderCollection;
         private RepairOrder _newRepairOrder;
 
+        private bool _overwriteFile;
+        private string _savePath;
+        private bool _savePathCorrect;
+        private bool NotSaved { get; set; }
         #endregion
 
         #region - Constructors
@@ -34,14 +40,15 @@ namespace PaystubJsonApp.ViewModels
             {
                 RONumber = 111,
                 Date = new DateTime(2020, 5, 5)
-            });;
+            });
+            ;
         }
 
         public void RemoveWorkFromRepairOrder( WorkItem item, RepairOrder currentRO )
         {
-            if (currentRO != null)
+            if ( currentRO != null )
             {
-                if (item != null)
+                if ( item != null )
                 {
                     currentRO.Work.RemoveWorkItem(item, false);
                 }
@@ -50,18 +57,38 @@ namespace PaystubJsonApp.ViewModels
 
         public void AddWorkToRepairOrder( WorkItem selectedItem, RepairOrder currentRO )
         {
-            if (currentRO != null)
+            if ( currentRO != null )
             {
-                if (!currentRO.Work.WorkData.Contains(selectedItem))
+                if ( !currentRO.Work.WorkData.Contains(selectedItem) )
                 {
                     currentRO.Work.AddWorkItem(selectedItem);
                 }
             }
         }
 
+        public void SaveFile( object sender, EventArgs e )
+        {
+            FileDialogController<RepairOrderCollection> saver = new FileDialogController<RepairOrderCollection>(RepairOrderCollection);
+            saver.SaveFile(SavePath);
+        }
+
+        public void OpenFile( object sender, EventArgs e )
+        {
+            FileDialogController<RepairOrderCollection> opener = new FileDialogController<RepairOrderCollection>();
+            (string newPath, RepairOrderCollection newROs) = opener.OpenFile(NotSaved);
+            if ( newPath != null && newROs != null )
+            {
+                SavePath = newPath;
+                RepairOrderCollection = newROs;
+            }
+            NotSaved = false;
+        }
+
+        public void OpenSavePath( object sender, EventArgs e ) => SavePath = new FileDialogController<RepairOrderCollection>().SaveFileDialog();
+
         private void BuildDebugInstanceData( )
         {
-            if (Debug.Debug.Instance.DefaultValues)
+            if ( Debug.Debug.Instance.DefaultValues )
             {
                 RepairOrderCollection = new RepairOrderCollection()
                 {
@@ -88,18 +115,19 @@ namespace PaystubJsonApp.ViewModels
         #region - Full Properties
         public RepairOrderCollection RepairOrderCollection
         {
-            get { return _repairOrderCollection; }
+            get => _repairOrderCollection;
             set
             {
                 _repairOrderCollection = value;
                 NotifyOfPropertyChange(nameof(RepairOrderCollection));
                 NotifyOfPropertyChange(nameof(NoROs));
+                NotSaved = true;
             }
         }
 
         public RepairOrder NewRepairOrder
         {
-            get { return _newRepairOrder; }
+            get => _newRepairOrder;
             set
             {
                 _newRepairOrder = value;
@@ -111,14 +139,45 @@ namespace PaystubJsonApp.ViewModels
         {
             get
             {
-                if (RepairOrderCollection != null)
+                if ( RepairOrderCollection != null )
                 {
-                    if (RepairOrderCollection.RepairOrders != null)
+                    if ( RepairOrderCollection.RepairOrders != null )
                     {
                         return RepairOrderCollection.RepairOrders.Count <= 0 ? Visibility.Visible : Visibility.Hidden;
                     }
                 }
                 return Visibility.Visible;
+            }
+        }
+
+        public bool OverwriteFile
+        {
+            get => _overwriteFile;
+            set
+            {
+                _overwriteFile = value;
+                NotifyOfPropertyChange(nameof(OverwriteFile));
+            }
+        }
+
+        public string SavePath
+        {
+            get => _savePath;
+            set
+            {
+                _savePath = value;
+                NotifyOfPropertyChange(nameof(SavePath));
+                NotifyOfPropertyChange(nameof(SavePathCorrect));
+            }
+        }
+
+        public bool SavePathCorrect
+        {
+            get => _savePathCorrect;
+            set
+            {
+                _savePathCorrect = value;
+                NotifyOfPropertyChange(nameof(SavePathCorrect));
             }
         }
         #endregion

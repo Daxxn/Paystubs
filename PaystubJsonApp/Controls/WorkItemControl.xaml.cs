@@ -24,62 +24,68 @@ namespace PaystubJsonApp.Controls
     /// </summary>
     public partial class WorkItemControl : UserControl
     {
-
-
+        /// <summary>
+        /// WorkItem Used in the RepairOrder List
+        /// </summary>
         public ObservableCollection<WorkItem> Work
         {
-            get { return (ObservableCollection<WorkItem>)GetValue(WorkProperty); }
-            set { SetValue(WorkProperty, value); }
+            get => ( ObservableCollection<WorkItem> )GetValue(WorkProperty);
+            set => SetValue(WorkProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Work.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorkProperty =
             DependencyProperty.Register("Work", typeof(ObservableCollection<WorkItem>), typeof(WorkItemControl), new PropertyMetadata(null));
 
-
-
+        /// <summary>
+        /// The Parent ID of the WorkItem.
+        /// </summary>
         public Guid RepairOrderID
         {
-            get { return (Guid)GetValue(RepairOrderIDProperty); }
-            set { SetValue(RepairOrderIDProperty, value); }
+            get => ( Guid )GetValue(RepairOrderIDProperty);
+            set => SetValue(RepairOrderIDProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for RepairOrderID.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RepairOrderIDProperty =
             DependencyProperty.Register("RepairOrderID", typeof(Guid), typeof(WorkItemControl), new PropertyMetadata(null));
 
-
-
-
-
+        /// <summary>
+        /// View Model of control.
+        /// </summary>
         public RepairOrderViewModel VM
         {
-            get { return (RepairOrderViewModel)GetValue(VMProperty); }
-            set { SetValue(VMProperty, value); }
+            get => ( RepairOrderViewModel )GetValue(VMProperty);
+            set => SetValue(VMProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for VM.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty VMProperty =
             DependencyProperty.Register("VM", typeof(RepairOrderViewModel), typeof(WorkItemControl), new PropertyMetadata(null));
 
-
-
-
-        public WorkItemControl( )
-        {
-            InitializeComponent();
-        }
+        public WorkItemControl( ) => InitializeComponent();
 
         private void Button_Click( object sender, RoutedEventArgs e )
         {
-            var button = sender as Button;
-            var workItem = button.DataContext as WorkItem;
-            VM.RemoveWorkFromRepairOrder(
-                workItem,
-                VM.RepairOrderCollection.RepairOrders.FirstOrDefault(
-                    ro => RepairOrderID == ro._Id
-                )
-            );
+            try
+            {
+                Button button = sender as Button;
+                WorkItem workItem = button.DataContext as WorkItem;
+                VM.RemoveWorkFromRepairOrder(
+                    workItem,
+                    VM.RepairOrderCollection.RepairOrders.FirstOrDefault(
+                        ro => RepairOrderID == ro._Id
+                    )
+                );
+            }
+            catch ( Exception exe )
+            {
+                Debug.Debug.Instance.Post(
+                    "Error",
+                    $"Delete button error: {exe.Message}",
+                    new string[] { sender.ToString(), e.RoutedEvent.ToString() }
+                );
+            }
         }
     }
 }

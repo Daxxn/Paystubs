@@ -27,7 +27,7 @@ namespace PaystubJsonApp.Views
             InitializeComponent();
             DataContext = vm;
             InitializeEvents(vm);
-            if (Debug.Debug.Instance.Active)
+            if ( Debug.Debug.Instance.Active )
             {
                 KeyDown += Debug.Debug.Instance.PostEvent;
                 MouseDown += Debug.Debug.Instance.PostEvent;
@@ -46,10 +46,10 @@ namespace PaystubJsonApp.Views
 
         private void HandleAddViewOpen( object sender, EventArgs e )
         {
-            var vm = DataContext as PaystubViewModel;
-            var addVm = new AddViewModel();
+            PaystubViewModel vm = DataContext as PaystubViewModel;
+            AddViewModel addVm = new AddViewModel();
             addVm.AddNewPaystubsEvent += vm.AddNewPaystubs;
-            var addView = new AddView(addVm);
+            AddView addView = new AddView(addVm);
             Debug.Debug.Instance.Post("Event", "Opening AddView");
             addView.ShowDialog();
         }

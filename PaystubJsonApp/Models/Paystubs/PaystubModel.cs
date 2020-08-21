@@ -28,15 +28,9 @@ namespace PaystubJsonApp.Models.Paystubs
         #endregion
 
         #region - Full Properties
-        public int PayPeriod
-        {
-            get
-            {
-                return StartDate == DateTime.MinValue || EndDate == DateTime.MinValue
+        public int PayPeriod => StartDate == DateTime.MinValue || EndDate == DateTime.MinValue
                     ? TimeSpan.Zero.Days
                     : EndDate.Subtract(StartDate).Days;
-            }
-        }
         #endregion
     }
 }

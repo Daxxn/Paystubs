@@ -24,31 +24,32 @@ namespace PaystubJsonApp.Views
     /// </summary>
     public partial class RepairOrderView : UserControl
     {
-        public RepairOrderViewModel VM { get; private set; }
         public RepairOrderView( RepairOrderViewModel vm )
         {
             InitializeComponent();
             DataContext = vm;
-            VM = vm;
             InitializeEvents(vm);
         }
 
         private void InitializeEvents( RepairOrderViewModel vm )
         {
             AddRepairOrdersButton.Click += vm.AddRepairOrder;
+            SaveFileButton.Click += vm.SaveFile;
+            OpenFileButton.Click += vm.OpenFile;
+            OpenSavePath.Click += vm.OpenSavePath;
         }
 
         private void ComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
         {
-            var vm = DataContext as RepairOrderViewModel;
+            RepairOrderViewModel vm = DataContext as RepairOrderViewModel;
 
             try
             {
-                var CBItem = sender as ComboBox;
-                var repairOrder = CBItem.DataContext as RepairOrder;
-                vm.AddWorkToRepairOrder((WorkItem)e.AddedItems[ 0 ], repairOrder);
+                ComboBox CBItem = sender as ComboBox;
+                RepairOrder repairOrder = CBItem.DataContext as RepairOrder;
+                vm.AddWorkToRepairOrder(( WorkItem )e.AddedItems[ 0 ], repairOrder);
             }
-            catch (Exception exe)
+            catch ( Exception exe )
             {
                 Debug.Debug.Instance.Post(
                     "Error",
@@ -56,15 +57,7 @@ namespace PaystubJsonApp.Views
                     new string[] { sender.ToString(), e.AddedItems.Count.ToString() }
                 );
             }
-            
-        }
 
-        private void Button_Click( object sender, RoutedEventArgs e )
-        {
-            var vm = DataContext as RepairOrderViewModel;
-            var button = sender as Button;
-            var workItem = button.DataContext as WorkItem;
-            //vm.RemoveWorkFromRepairOrder(workItem);
         }
     }
 }

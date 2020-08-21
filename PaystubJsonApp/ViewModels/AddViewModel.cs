@@ -1,5 +1,6 @@
 ﻿using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.ViewModels.Events;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ using System.Xml;
 
 namespace PaystubJsonApp.ViewModels
 {
-    public class AddViewModel: ViewModelBase
+    public class AddViewModel : ViewModelBase
     {
         #region - Fields & Properties
         public event EventHandler<AddPaystubsEventArgs> AddNewPaystubsEvent;
@@ -35,16 +36,13 @@ namespace PaystubJsonApp.ViewModels
         #endregion
 
         #region - Constructors
-        public AddViewModel( )
-        {
-            NewPaystubs = new ObservableCollection<PaystubModel>();
-        }
+        public AddViewModel( ) => NewPaystubs = new ObservableCollection<PaystubModel>();
         #endregion
 
         #region - Methods
         public void HandleDataEntryKeyDownEvent( object sender, KeyEventArgs e )
         {
-            if (e.Key == Key.Enter)
+            if ( e.Key == Key.Enter )
             {
                 HandleCreateNewPaystub(sender, e);
             }
@@ -52,8 +50,8 @@ namespace PaystubJsonApp.ViewModels
 
         public void HandleCreateNewPaystub( object sender, EventArgs e )
         {
-            var tempStartDate = DatesInOrder ? AutoStartDate : StartDate;
-            if (DatesInOrder)
+            DateTime tempStartDate = DatesInOrder ? AutoStartDate : StartDate;
+            if ( DatesInOrder )
             {
                 EndDate = AddDaysToDate(StartDate);
             }
@@ -80,13 +78,10 @@ namespace PaystubJsonApp.ViewModels
             HasChanged = true;
         }
 
-        public void HandleSave( )
-        {
-            AddNewPaystubsEvent?.Invoke(
+        public void HandleSave( ) => AddNewPaystubsEvent?.Invoke(
                 this,
                 new AddPaystubsEventArgs(NewPaystubs.ToArray())
             );
-        }
 
         public void ClearEntryValues( )
         {
@@ -96,7 +91,7 @@ namespace PaystubJsonApp.ViewModels
             FlatrateHours = 0;
             StartDate = EndDate.AddDays(1);
             EndDate = AddDaysToDate(StartDate);
-            if (DatesInOrder)
+            if ( DatesInOrder )
             {
                 AutoStartDate = StartDate;
             }
@@ -111,21 +106,15 @@ namespace PaystubJsonApp.ViewModels
 
         }
 
-        private DateTime AddDaysToDate( DateTime startDate )
-        {
-            return startDate.AddDays(PayPeriod);
-        }
+        private DateTime AddDaysToDate( DateTime startDate ) => startDate.AddDays(PayPeriod);
 
-        private DateTime AddDaysToDate( int days )
-        {
-            return StartDate.AddDays(days);
-        }
+        private DateTime AddDaysToDate( int days ) => StartDate.AddDays(days);
         #endregion
 
         #region - Full Properties
         public ObservableCollection<PaystubModel> NewPaystubs
         {
-            get { return _newPaystubs; }
+            get => _newPaystubs;
             set
             {
                 _newPaystubs = value;
@@ -135,7 +124,7 @@ namespace PaystubJsonApp.ViewModels
 
         public double PayRate
         {
-            get { return _payRate; }
+            get => _payRate;
             set
             {
                 _payRate = value;
@@ -145,7 +134,7 @@ namespace PaystubJsonApp.ViewModels
 
         public int PayPeriod
         {
-            get { return _payPeriod; }
+            get => _payPeriod;
             set
             {
                 _payPeriod = value;
@@ -155,7 +144,7 @@ namespace PaystubJsonApp.ViewModels
 
         public bool DatesInOrder
         {
-            get { return _datesInOrder; }
+            get => _datesInOrder;
             set
             {
                 _datesInOrder = value;
@@ -165,30 +154,17 @@ namespace PaystubJsonApp.ViewModels
             }
         }
 
-        public Visibility SingleDatesVisible
-        {
-            get
-            {
-                return DatesInOrder
+        public Visibility SingleDatesVisible => DatesInOrder
                     ? Visibility.Collapsed
                     : Visibility.Visible;
-            }
-        }
 
-        public Visibility AutoDatesVisible
-        {
-            get
-            {
-                return
-                    SingleDatesVisible == Visibility.Visible
+        public Visibility AutoDatesVisible => SingleDatesVisible == Visibility.Visible
                     ? Visibility.Collapsed
                     : Visibility.Visible;
-            }
-        }
 
         public decimal Gross
         {
-            get { return _gross; }
+            get => _gross;
             set
             {
                 _gross = value;
@@ -198,7 +174,7 @@ namespace PaystubJsonApp.ViewModels
 
         public decimal Net
         {
-            get { return _net; }
+            get => _net;
             set
             {
                 _net = value;
@@ -208,7 +184,7 @@ namespace PaystubJsonApp.ViewModels
 
         public double Hours
         {
-            get { return _hours; }
+            get => _hours;
             set
             {
                 _hours = value;
@@ -218,7 +194,7 @@ namespace PaystubJsonApp.ViewModels
 
         public double FlatrateHours
         {
-            get { return _flatrateHours; }
+            get => _flatrateHours;
             set
             {
                 _flatrateHours = value;
@@ -228,7 +204,7 @@ namespace PaystubJsonApp.ViewModels
 
         public DateTime StartDate
         {
-            get { return _startDate; }
+            get => _startDate;
             set
             {
                 _startDate = value;
@@ -238,7 +214,7 @@ namespace PaystubJsonApp.ViewModels
 
         public DateTime EndDate
         {
-            get { return _endDate; }
+            get => _endDate;
             set
             {
                 _endDate = value;
@@ -248,7 +224,7 @@ namespace PaystubJsonApp.ViewModels
 
         public DateTime AutoStartDate
         {
-            get { return _autoStartDate; }
+            get => _autoStartDate;
             set
             {
                 _autoStartDate = value;
@@ -258,7 +234,7 @@ namespace PaystubJsonApp.ViewModels
 
         public bool HasChanged
         {
-            get { return _notChanged; }
+            get => _notChanged;
             set
             {
                 _notChanged = value;
