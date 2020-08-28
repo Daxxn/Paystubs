@@ -14,7 +14,8 @@ namespace PaystubJsonApp.Models.Work
     public class WorkCollection : ModelBase
     {
         #region - Fields & Properties
-        //private Dictionary<uint, WorkItem> _dictionary;
+        private static WorkCollection _instance;
+
         private ObservableCollection<WorkItem> _data;
 
         private Func<ObservableCollection<WorkItem>, int, bool> IDSearch =
@@ -25,20 +26,25 @@ namespace PaystubJsonApp.Models.Work
         #endregion
 
         #region - Constructors
-        public WorkCollection( )
+        private WorkCollection( )
         {
             _data = new ObservableCollection<WorkItem>();
         }
-        public WorkCollection( IEnumerable<WorkItem> data )
+        private WorkCollection( IEnumerable<WorkItem> data )
         {
             _data = new ObservableCollection<WorkItem>(data);
         }
         #endregion
 
         #region - Methods
+        public static WorkCollection New( IEnumerable<WorkItem> data )
+        {
+            _instance = new WorkCollection(data);
+            return Instance;
+        }
+
         public bool Add( int id, WorkItem item )
         {
-            //if ( _data.First(x => x.WorkIdNumber == id) is null )
             bool result = IDSearch(_data, id);
             if (! result )
             {
@@ -59,25 +65,10 @@ namespace PaystubJsonApp.Models.Work
             {
                 found = item;
             }
-
-            //var index = _data.IndexOf(item);
-            //if ( index >= 0 )
-            //{
-            //    _data.ElementAt(index) = item;
-            //}
         }
         #endregion
 
         #region - Full Properties
-        //public Dictionary<uint, WorkItem> Dictionary
-        //{
-        //    get { return _dictionary; }
-        //    set
-        //    {
-        //        _dictionary = value;
-        //    }
-        //}
-
         public ObservableCollection<WorkItem> Data
         {
             get => _data;
@@ -90,35 +81,18 @@ namespace PaystubJsonApp.Models.Work
                 return Find(_data, id);
             }
         }
+
+        public static WorkCollection Instance
+        {
+            get
+            {
+                if ( _instance is null )
+                {
+                    _instance = new WorkCollection();
+                }
+                return _instance;
+            }
+        }
         #endregion
-
-        //OLD
-        //#region - Fields & Properties
-        //public ObservableCollection<WorkItem> WorkData { get; private set; }
-        //#endregion
-
-        //#region - Constructors
-        //public WorkCollection( ) { }
-        //public WorkCollection( IEnumerable<WorkItem> workData )
-        //{
-        //    WorkData = new ObservableCollection<WorkItem>(workData);
-        //}
-
-        //public event NotifyCollectionChangedEventHandler CollectionChanged;
-        //#endregion
-
-        //#region - Methods
-        //public void AddWorkItem( WorkItem item )
-        //{
-        //    if ( true )
-        //    {
-
-        //    }
-        //}
-        //#endregion
-
-        //#region - Full Properties
-
-        //#endregion
     }
 }

@@ -2,7 +2,7 @@
 using PaystubJsonApp.Models.Paystubs;
 using PaystubJsonApp.Models.ReapirOrders;
 using PaystubJsonApp.Models.RepairOrders;
-
+using PaystubJsonApp.Models.Work;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +18,7 @@ namespace PaystubJsonApp.ViewModels
         #region - Fields & Properties
         private RepairOrderCollection _repairOrderCollection;
         private RepairOrder _newRepairOrder;
+        private WorkCollection _allWork = WorkCollection.Instance;
 
         private bool _overwriteFile;
         private string _savePath;
@@ -44,14 +45,16 @@ namespace PaystubJsonApp.ViewModels
             ;
         }
 
-        public void RemoveWorkFromRepairOrder( WorkItem item, RepairOrder currentRO )
+        public void RemoveWorkFromRepairOrder( WorkItem selectedItem, RepairOrder currentRO )
         {
             if ( currentRO != null )
             {
-                if ( item != null )
-                {
-                    currentRO.Work.RemoveWorkItem(item, false);
-                }
+                //if ( item != null )
+                //{
+                //    //currentRO.Work.RemoveWorkItem(item, false);
+                //    currentRO.Work.WorkItems.Remove(item);
+                //}
+                currentRO.Work.RemoveWork(selectedItem);
             }
         }
 
@@ -59,10 +62,15 @@ namespace PaystubJsonApp.ViewModels
         {
             if ( currentRO != null )
             {
-                if ( !currentRO.Work.WorkData.Contains(selectedItem) )
-                {
-                    currentRO.Work.AddWorkItem(selectedItem);
-                }
+                //if ( !currentRO.Work.WorkData.Contains(selectedItem) )
+                //{
+                //    currentRO.Work.AddWorkItem(selectedItem);
+                //}
+                //if ( !currentRO.Work.WorkItems.Contains(selectedItem) )
+                //{
+                //    currentRO.Work.WorkItems.Add(selectedItem);
+                //}
+                currentRO.Work.AddWork(selectedItem);
             }
         }
 
@@ -92,6 +100,30 @@ namespace PaystubJsonApp.ViewModels
         {
             if ( Debug.Debug.Instance.DefaultValues )
             {
+                WorkCollection.New(new WorkItem[]
+                {
+                    new WorkItem
+                    {
+                        WorkIdNumber=1,
+                        Name="Work A",
+                        Description="This is the first one.",
+                        FlatRateTime=1,
+                    },
+                    new WorkItem
+                    {
+                        WorkIdNumber=2,
+                        Name="Work B",
+                        Description="This is another one.",
+                        FlatRateTime=4,
+                    },
+                    new WorkItem
+                    {
+                        WorkIdNumber=42,
+                        Name="Work A",
+                        Description="This is the Meaning of Life!",
+                        FlatRateTime=1,
+                    },
+                });
                 RepairOrderCollection = new RepairOrderCollection()
                 {
                     RepairOrders = new ObservableCollection<RepairOrder>
@@ -100,7 +132,7 @@ namespace PaystubJsonApp.ViewModels
                         {
                             RONumber = 111111,
                             Date = DateTime.Now,
-                            Work = new WorkProvider()
+                            Work = new WorkProvider(WorkCollection.Instance.Data)
                         },
                         new RepairOrder
                         {
@@ -124,6 +156,16 @@ namespace PaystubJsonApp.ViewModels
                 NotifyOfPropertyChange(nameof(RepairOrderCollection));
                 NotifyOfPropertyChange(nameof(NoROs));
                 NotSaved = true;
+            }
+        }
+
+        public WorkCollection AllWork
+        {
+            get { return _allWork; }
+            set
+            {
+                _allWork = value;
+                NotifyOfPropertyChange(nameof(AllWork));
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿using PaystubJsonApp.Models.ReapirOrders;
-
+using PaystubJsonApp.Models.Work;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +29,9 @@ namespace PaystubJsonApp.Models.RepairOrders
         {
             get
             {
-                return Work is null || Work.WorkData is null
+                return Work is null || Work.WorkItems is null
                     ? 0
-                    : Work.WorkData.Sum(item => item.FlatRateTime);
+                    : Work.WorkItems.Sum(item => item.FlatRateTime);
             }
         }
         #endregion

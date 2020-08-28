@@ -92,13 +92,14 @@
     <Compile Include="Debug\Debug.cs" />
     <Compile Include="Debug\LogModel.cs" />
     <Compile Include="Events\AddPaystubsEventArgs.cs" />
+    <Compile Include="Exceptions\UnknownWorkItemException.cs" />
     <Compile Include="FileControl\FileDialogController.cs" />
     <Compile Include="FileControl\FileManager.cs" />
     <Compile Include="Logic\TextHelper.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\RepairOrders\RepairOrder.cs" />
     <Compile Include="Models\RepairOrders\RepairOrderCollection.cs" />
-    <Compile Include="Models\RepairOrders\WorkItem.cs" />
+    <Compile Include="Models\Work\WorkItem.cs" />
     <Compile Include="Models\RepairOrders\WorkProvider.cs" />
     <Compile Include="Models\Work\WorkCollection.cs" />
     <Compile Include="Models\Work\WorkProvider.cs" />

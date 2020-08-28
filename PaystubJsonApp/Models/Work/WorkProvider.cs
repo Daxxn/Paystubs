@@ -1,4 +1,5 @@
-﻿using PaystubJsonApp.Models.ReapirOrders;
+﻿using PaystubJsonApp.Exceptions;
+using PaystubJsonApp.Models.ReapirOrders;
 
 using System;
 using System.Collections.Generic;
@@ -13,43 +14,43 @@ namespace PaystubJsonApp.Models.Work
     public class WorkProvider
     {
         #region - Fields & Properties
-        private static WorkProvider _instance;
+        public WorkCollection WorkCollection { get; set; } = WorkCollection.Instance;
 
-        public WorkCollection WorkInstances { get; private set; }
+        public ObservableCollection<WorkItem> WorkItems { get; set; }
         #endregion
 
         #region - Constructors
-        private WorkProvider( ) { }
+        public WorkProvider( )
+        {
+            WorkItems = new ObservableCollection<WorkItem>();
+        }
+        public WorkProvider( IEnumerable<WorkItem> workItems )
+        {
+            WorkItems = new ObservableCollection<WorkItem>(workItems);
+        }
         #endregion
 
         #region - Methods
-        public static void Initialize( )
+        public void AddWork( WorkItem item )
         {
-            Instance = new WorkProvider();
+            if ( !WorkCollection.Data.Contains(item) )
+            {
+                throw new UnknownWorkItemException(item);
+            }
+
+            if ( !WorkItems.Contains(item) )
+            {
+                WorkItems.Add(item);
+            }
         }
 
-        public static void Initialize( IEnumerable<WorkItem> newData )
+        public void RemoveWork( WorkItem item )
         {
-            Instance = new WorkProvider()
-            {
-                WorkInstances = new WorkCollection(newData)
-            };
+            WorkItems.Remove(item);
         }
         #endregion
 
         #region - Full Properties
-        public static WorkProvider Instance
-        {
-            get
-            {
-                if ( _instance is null )
-                {
-                    _instance = new WorkProvider();
-                }
-                return _instance;
-            }
-            private set => _instance = value;
-        }
         #endregion
     }
 }

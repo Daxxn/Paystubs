@@ -31,7 +31,7 @@ namespace PaystubJsonApp.ViewModels
         public WorkOrderViewModel( )
         {
             OverwriteFile = AppSettings.Default.OverwriteFile;
-            AllWork = new WorkCollection();
+            AllWork = WorkCollection.Instance;
         }
         #endregion
 

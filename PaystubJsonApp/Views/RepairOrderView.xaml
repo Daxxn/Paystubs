@@ -262,7 +262,7 @@
 												SelectionChanged="ComboBox_SelectionChanged"
 												IsTabStop="False"
 												ItemsSource="{
-													Binding Path=Work.WorkContainer.Values
+													Binding Path=Work.WorkCollection.Data
 												}"
 											>
 												<ComboBox.ItemTemplate>
@@ -277,7 +277,7 @@
 													ElementName=repairOrderView_root
 												}"
 												RepairOrderID="{Binding Path=_Id}"
-												Work="{Binding Path=Work.WorkData}"
+												Work="{Binding Path=Work.WorkItems}"
 											/>
 											<!--<ItemsControl ItemsSource="{Binding Path=Work.WorkData}">
 												<ItemsControl.ItemTemplate>
