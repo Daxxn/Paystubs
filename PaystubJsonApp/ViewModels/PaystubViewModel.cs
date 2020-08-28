@@ -148,7 +148,7 @@ namespace PaystubJsonApp.ViewModels
             }
         }
 
-        public bool SavePathCorrect => FileDialogController<PaystubCollection>.CheckFilePath(SavePath);
+        public bool SavePathCorrect => FileManager.CheckFilePath(SavePath);
 
         public bool OverwriteFile
         {

@@ -22,7 +22,6 @@ namespace PaystubJsonApp.ViewModels
 
         private bool _overwriteFile;
         private string _savePath;
-        private bool _savePathCorrect;
         private bool NotSaved { get; set; }
         #endregion
 
@@ -49,11 +48,6 @@ namespace PaystubJsonApp.ViewModels
         {
             if ( currentRO != null )
             {
-                //if ( item != null )
-                //{
-                //    //currentRO.Work.RemoveWorkItem(item, false);
-                //    currentRO.Work.WorkItems.Remove(item);
-                //}
                 currentRO.Work.RemoveWork(selectedItem);
             }
         }
@@ -62,14 +56,6 @@ namespace PaystubJsonApp.ViewModels
         {
             if ( currentRO != null )
             {
-                //if ( !currentRO.Work.WorkData.Contains(selectedItem) )
-                //{
-                //    currentRO.Work.AddWorkItem(selectedItem);
-                //}
-                //if ( !currentRO.Work.WorkItems.Contains(selectedItem) )
-                //{
-                //    currentRO.Work.WorkItems.Add(selectedItem);
-                //}
                 currentRO.Work.AddWork(selectedItem);
             }
         }
@@ -214,16 +200,7 @@ namespace PaystubJsonApp.ViewModels
                 NotifyOfPropertyChange(nameof(SavePathCorrect));
             }
         }
-
-        public bool SavePathCorrect
-        {
-            get => _savePathCorrect;
-            set
-            {
-                _savePathCorrect = value;
-                NotifyOfPropertyChange(nameof(SavePathCorrect));
-            }
-        }
+        public bool SavePathCorrect => FileManager.CheckFilePath(SavePath);
         #endregion
     }
 }
