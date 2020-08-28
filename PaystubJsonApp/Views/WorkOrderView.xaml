@@ -6,7 +6,7 @@
 			 xmlns:local="clr-namespace:PaystubJsonApp.Views"
 			 xmlns:vc="clr-namespace:PaystubJsonApp.ValueConverters"
 			 xmlns:controls="clr-namespace:PaystubJsonApp.Controls"
-			 mc:Ignorable="d" Background="Beige"
+			 mc:Ignorable="d"
 			 d:DesignHeight="450" d:DesignWidth="800">
 	<UserControl.Resources>
 		<ResourceDictionary>
@@ -63,7 +63,7 @@
 							<Border
 								Grid.Row="1"
 								Grid.ColumnSpan="2"
-								Background="Red"
+								Background="{StaticResource base-disabled-brush}"
 								Visibility="{
 									Binding Path=DoesItemExist,
 									Converter={StaticResource visibilityConverter}
@@ -75,7 +75,7 @@
 							<Border
 								Grid.Row="1"
 								Grid.ColumnSpan="2"
-								Background="Green"
+								Background="{StaticResource base-good-brush}"
 								Visibility="{
 									Binding Path=DoesItemExistInvert,
 									Converter={StaticResource visibilityConverter}
@@ -94,13 +94,7 @@
 						</Button>
 					</Grid>
 				</Border>
-
-				<!--#region File Control-->
-				<!--<controls:FileControl
-					Grid.Column="1"
-					SavePath="{Binding Path=SavePath}"
-				/>-->
-				<!--Original-->
+				
 				<Border Grid.Column="1" Margin="4">
 					<Grid>
 						<Grid.ColumnDefinitions>
@@ -241,11 +235,11 @@
 				AutoGenerateColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn
-						Header="Id Number"
+						Header="Id"
 						Binding="{Binding Path=WorkIdNumber}"
 					/>
 					<DataGridTextColumn
-						Header="Name"
+						Header="Job"
 						Binding="{Binding Path=Name}"
 					/>
 					<DataGridTextColumn
