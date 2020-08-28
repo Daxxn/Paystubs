@@ -35,7 +35,12 @@ namespace PaystubJsonApp.Controls
 
         // Using a DependencyProperty as the backing store for Work.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorkProperty =
-            DependencyProperty.Register("Work", typeof(ObservableCollection<WorkItem>), typeof(WorkItemControl), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "Work",
+                typeof(ObservableCollection<WorkItem>),
+                typeof(WorkItemControl),
+                new PropertyMetadata(null)
+            );
 
         /// <summary>
         /// The Parent ID of the WorkItem.
@@ -48,7 +53,12 @@ namespace PaystubJsonApp.Controls
 
         // Using a DependencyProperty as the backing store for RepairOrderID.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RepairOrderIDProperty =
-            DependencyProperty.Register("RepairOrderID", typeof(Guid), typeof(WorkItemControl), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "RepairOrderID",
+                typeof(Guid),
+                typeof(WorkItemControl),
+                new PropertyMetadata(null)
+            );
 
         /// <summary>
         /// View Model of control.
@@ -61,7 +71,12 @@ namespace PaystubJsonApp.Controls
 
         // Using a DependencyProperty as the backing store for VM.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty VMProperty =
-            DependencyProperty.Register("VM", typeof(RepairOrderViewModel), typeof(WorkItemControl), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "VM",
+                typeof(RepairOrderViewModel),
+                typeof(WorkItemControl),
+                new PropertyMetadata(null)
+            );
 
         public WorkItemControl( ) => InitializeComponent();
 

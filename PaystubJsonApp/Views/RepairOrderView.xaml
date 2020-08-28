@@ -271,7 +271,14 @@
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
-											<controls:WorkItemControl VM="{Binding DataContext, ElementName=repairOrderView_root}" RepairOrderID="{Binding Path=_Id}" Work="{Binding Path=Work.WorkData}"/>
+											<controls:WorkItemControl
+												VM="{
+													Binding DataContext,
+													ElementName=repairOrderView_root
+												}"
+												RepairOrderID="{Binding Path=_Id}"
+												Work="{Binding Path=Work.WorkData}"
+											/>
 											<!--<ItemsControl ItemsSource="{Binding Path=Work.WorkData}">
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>

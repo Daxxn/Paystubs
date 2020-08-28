@@ -1,4 +1,7 @@
-﻿using PaystubJsonApp.Models.ReapirOrders;
+﻿using PaystubJsonApp.FileControl;
+using PaystubJsonApp.Models.ReapirOrders;
+using PaystubJsonApp.Models.Work;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,53 +15,146 @@ namespace PaystubJsonApp.ViewModels
     public class WorkOrderViewModel : ViewModelBase
     {
         #region - Fields & Properties
-        private ObservableCollection<WorkItem> _allWorkData
-            = new ObservableCollection<WorkItem>(
-                WorkProvider.WorkContainer.Values
-            );
+        private WorkCollection _allWork;
+        private WorkItem _selectedWorkItem;
 
-        private WorkItem _newWorkItem = new WorkItem();
+        private int _newWorkID;
+
+        private bool _overwriteFile;
+        private string _savePath;
+        private bool _notSaved;
+
+        private bool _doesItemExist;
         #endregion
 
         #region - Constructors
-        public WorkOrderViewModel( ) { }
+        public WorkOrderViewModel( )
+        {
+            OverwriteFile = AppSettings.Default.OverwriteFile;
+            AllWork = new WorkCollection();
+        }
         #endregion
 
         #region - Methods
+
+        #region File Controlls
+        public void HandleOpenSavePath( object sender, EventArgs e ) =>
+            SavePath = new FileDialogController<WorkCollection>().
+                SaveFileDialog(FileExtensionType.WorkOrder);
+
+        public void HandleOpenFile( object sender, EventArgs e )
+        {
+            FileDialogController<WorkCollection> opener = new FileDialogController<WorkCollection>();
+            (string newPath, WorkCollection newWork) = opener.OpenFile(NotSaved);
+            if ( newPath != null && newWork != null )
+            {
+                SavePath = newPath;
+                AllWork = newWork;
+            }
+            NotSaved = false;
+        }
+
+        public void HandleSaveFile( object sender, EventArgs e )
+        {
+            FileDialogController<WorkCollection> saver = new FileDialogController<WorkCollection>(AllWork);
+            saver.SaveFile(SavePath);
+        }
+        #endregion
         public void EditEnding( object sender, DataGridCellEditEndingEventArgs e )
         {
             var element = e.EditingElement as TextBox;
+            if ( element is null )
+            {
+                Debug.Debug.Instance.Post("Error", "Element was null");
+                return;
+            }
             var data = element.DataContext as WorkItem;
-            WorkProvider.WorkContainer[ data.WorkIdNumber ] = data;
+            AllWork.Update(data);
         }
 
         public void AddWorkItem( object sender, EventArgs e )
         {
-            if ( WorkProvider.AddNewWorkItem(NewWorkItem) )
+            var newWorkItem = new WorkItem
             {
-                AllWorkData.Add(NewWorkItem);
-            }
+                WorkIdNumber = NewWorkID,
+            };
+            DoesItemExist = AllWork.Add(NewWorkID, newWorkItem);
         }
         #endregion
 
         #region - Full Properties
-        public ObservableCollection<WorkItem> AllWorkData
+        public WorkCollection AllWork
         {
-            get { return _allWorkData; }
+            get { return _allWork; }
             set
             {
-                _allWorkData = value;
-                NotifyOfPropertyChange(nameof(WorkProvider));
+                _allWork = value;
+                NotifyOfPropertyChange(nameof(AllWork));
             }
         }
 
-        public WorkItem NewWorkItem
+        public WorkItem SelectedWorkItem
         {
-            get { return _newWorkItem; }
+            get { return _selectedWorkItem; }
             set
             {
-                _newWorkItem = value;
-                NotifyOfPropertyChange(nameof(NewWorkItem));
+                _selectedWorkItem = value;
+                NotifyOfPropertyChange(nameof(SelectedWorkItem));
+            }
+        }
+
+        public int NewWorkID
+        {
+            get { return _newWorkID; }
+            set
+            {
+                _newWorkID = value;
+                NotifyOfPropertyChange(nameof(NewWorkID));
+            }
+        }
+
+        public bool DoesItemExist
+        {
+            get { return _doesItemExist; }
+            set
+            {
+                _doesItemExist = value;
+                NotifyOfPropertyChange(nameof(DoesItemExist));
+                NotifyOfPropertyChange(nameof(DoesItemExistInvert));
+            }
+        }
+
+        public bool DoesItemExistInvert
+        {
+            get => !DoesItemExist;
+        }
+
+        public bool OverwriteFile
+        {
+            get { return _overwriteFile; }
+            set
+            {
+                _overwriteFile = value;
+                NotifyOfPropertyChange(nameof(OverwriteFile));
+            }
+        }
+
+        public string SavePath
+        {
+            get { return _savePath; }
+            set
+            {
+                _savePath = value;
+                NotifyOfPropertyChange(nameof(SavePath));
+            }
+        }
+
+        public bool NotSaved
+        {
+            get { return _notSaved; }
+            set
+            {
+                _notSaved = value;
             }
         }
         #endregion

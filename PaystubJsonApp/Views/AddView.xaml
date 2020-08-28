@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PaystubJsonApp"
+		xmlns:converters="clr-namespace:PaystubJsonApp.ValueConverters"
         mc:Ignorable="d" KeyDown="Window_KeyDown"
         Title="Add Paystubs" Height="600" Width="400">
+	<Window.Resources>
+		<ResourceDictionary>
+			<converters:VisibilityConverter x:Key="visibilityConverter"/>
+		</ResourceDictionary>
+	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -32,13 +38,17 @@
 					Auto-Fill Dates
 				</CheckBox>
 
-				<Border Grid.Column="1" Visibility="{Binding Path=AutoDatesVisible}" Style="{StaticResource units-border}">
-					<Grid
+				<Border
+					Grid.Column="1"
+					Visibility="{Binding Path=AutoDatesVisible}"
+					Style="{StaticResource units-border}"
+				>
+						<Grid
 						Margin="0,0,4,0"
 						Grid.Column="1"
 						Visibility="{Binding Path=AutoDatesVisible}"
 					>
-						<Grid.ColumnDefinitions>
+							<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="Auto"/>

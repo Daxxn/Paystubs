@@ -12,6 +12,7 @@ using System.Windows;
 
 namespace PaystubJsonApp.FileControl
 {
+
     public class FileDialogController<TModel> where TModel : ModelBase
     {
         #region - Fields & Properties
@@ -43,7 +44,7 @@ namespace PaystubJsonApp.FileControl
             }
         }
 
-        public string SaveFileDialog( )
+        public string SaveFileDialog( FileExtensionType type )
         {
             string newPath = null;
             OpenFileDialog dialog = new OpenFileDialog
@@ -55,7 +56,7 @@ namespace PaystubJsonApp.FileControl
                 CheckFileExists = false,
                 CheckPathExists = false,
                 Title = "Open Paystub File",
-                Filter = FileManager.FilterString
+                Filter = FileManager.Filters[type]
             };
 
             if ( dialog.ShowDialog() == true )

@@ -33,6 +33,9 @@ namespace PaystubJsonApp.Views
         {
             WorkOrdersDataGrid.CellEditEnding += vm.EditEnding;
             AddWorkItemButton.Click += vm.AddWorkItem;
+            OpenSavePath.Click += vm.HandleOpenSavePath;
+            SaveFileButton.Click += vm.HandleSaveFile;
+            OpenFileButton.Click += vm.HandleOpenFile;
         }
     }
 }

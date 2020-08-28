@@ -84,7 +84,9 @@ namespace PaystubJsonApp.ViewModels
             NotSaved = false;
         }
 
-        public void OpenSavePath( object sender, EventArgs e ) => SavePath = new FileDialogController<RepairOrderCollection>().SaveFileDialog();
+        public void OpenSavePath( object sender, EventArgs e ) =>
+            SavePath = new FileDialogController<RepairOrderCollection>().
+                SaveFileDialog(FileExtensionType.RepairOrder);
 
         private void BuildDebugInstanceData( )
         {

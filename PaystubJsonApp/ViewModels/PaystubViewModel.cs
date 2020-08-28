@@ -47,8 +47,9 @@ namespace PaystubJsonApp.ViewModels
         #region - Methods
         public void HandleCellChanged( object sender, EventArgs e ) => NotSaved = true;
 
-        public void HandleOpenSavePath( object sender, EventArgs e ) => SavePath = new FileDialogController<PaystubCollection>().SaveFileDialog();//SaveFileDialog dialog = new SaveFileDialog//{//    InitialDirectory = AppSettings.Default.DefaultSavePath,//    Title = "Save Location",//    CheckPathExists = false,//    CheckFileExists = false,//    OverwritePrompt = false,//    CreatePrompt = false,//    DefaultExt = FileManager.Extension,//    AddExtension = true,//    Filter = FileManager.FilterString//};//if (dialog.ShowDialog() == true)//{//    SavePath = dialog.FileName;//}
-
+        public void HandleOpenSavePath( object sender, EventArgs e ) =>
+            SavePath = new FileDialogController<PaystubCollection>().
+                SaveFileDialog(FileExtensionType.Paystub);
         public void HandleOpenFile( object sender, EventArgs e )
         {
             FileDialogController<PaystubCollection> opener = new FileDialogController<PaystubCollection>();
