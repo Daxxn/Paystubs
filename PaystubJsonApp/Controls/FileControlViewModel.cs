@@ -38,7 +38,7 @@ namespace PaystubJsonApp.Controls
                 NotifyOfPropertyChange(nameof(SavePathCorrect));
             }
         }
-        public bool SavePathCorrect => FileManager.CheckFilePath(SavePath);
+        public bool SavePathCorrect => FileDialogController<WorkCollection>.CheckFilePath(SavePath);
 
         public bool OverwriteFile
         {

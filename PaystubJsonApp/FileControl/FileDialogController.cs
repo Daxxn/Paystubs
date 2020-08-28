@@ -116,6 +116,28 @@ namespace PaystubJsonApp.FileControl
             );
             return (newPath, newData);
         }
+
+        public static bool CheckFilePath( string path )
+        {
+            if ( path?.Length > 0 )
+            {
+                if ( Directory.Exists(path) )
+                {
+                    return true;
+                }
+
+                if ( !File.Exists(path) )
+                {
+                    string temp = Path.GetDirectoryName(path);
+                    return Directory.Exists(temp);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
 
         #region - Full Properties

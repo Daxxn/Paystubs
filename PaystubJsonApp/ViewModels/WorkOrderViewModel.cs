@@ -70,7 +70,6 @@ namespace PaystubJsonApp.ViewModels
             }
             var data = element.DataContext as WorkItem;
             AllWork.Update(data);
-            NotSaved = true;
         }
 
         public void AddWorkItem( object sender, EventArgs e )
@@ -90,7 +89,6 @@ namespace PaystubJsonApp.ViewModels
             set
             {
                 _allWork = value;
-                NotSaved = true;
                 NotifyOfPropertyChange(nameof(AllWork));
             }
         }
@@ -148,11 +146,8 @@ namespace PaystubJsonApp.ViewModels
             {
                 _savePath = value;
                 NotifyOfPropertyChange(nameof(SavePath));
-                NotifyOfPropertyChange(nameof(SavePathCorrect));
             }
         }
-
-        public bool SavePathCorrect => FileManager.CheckFilePath(SavePath);
 
         public bool NotSaved
         {
@@ -160,12 +155,6 @@ namespace PaystubJsonApp.ViewModels
             set
             {
                 _notSaved = value;
-                Debug.Debug.Instance.Post(
-                    "Message",
-                    "NotSaved",
-                    new string[] { NotSaved.ToString() }
-                );
-                NotifyOfPropertyChange(nameof(NotSaved));
             }
         }
         #endregion
