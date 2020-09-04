@@ -5,15 +5,17 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:PaystubJsonApp.Views"
 			 xmlns:controls="clr-namespace:PaystubJsonApp.Controls"
-			 mc:Ignorable="d"
+			 mc:Ignorable="d" Background="Beige"
 			 x:Name="repairOrderView_root"
 			 d:DesignHeight="450" d:DesignWidth="800">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
+		<!--#region Controls-->
 		<Grid Grid.Row="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
@@ -195,7 +197,9 @@
 			</Border>
 			<!--#endregion-->
 		</Grid>
+		<!--#endregion-->
 
+		<!--#region Data-->
 		<Border Grid.Row="1" Visibility="{Binding Path=NoROs}">
 			<TextBlock >No RepairOrders</TextBlock>
 		</Border>
@@ -342,5 +346,51 @@
 				</ItemsControl>
 			</ScrollViewer>
 		</Border>
+		<!--#endregion-->
+		
+		<!--#region Calc Output-->
+		<Border Grid.Row="2">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+
+				<Border Grid.Column="0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock
+							Grid.ColumnSpan="2"
+							HorizontalAlignment="Center"
+						>
+							Overall
+						</TextBlock>
+
+						<TextBlock Grid.Row="1" Grid.Column="0">
+							Total Repair Orders
+						</TextBlock>
+						<TextBlock
+							Grid.Row="1"
+							Grid.Column="1"
+							Text="{Binding Path=RepairOrderCollection.RepairOrders.Count}"
+						/>
+
+						<TextBlock Grid.Row="2" Grid.Column="0">Total Job Time</TextBlock>
+						<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=TotalFlatrateTime}"/>
+					</Grid>
+				</Border>
+			</Grid>
+		</Border>
+		<!--#endregion-->
 	</Grid>
 </UserControl>

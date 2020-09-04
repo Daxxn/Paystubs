@@ -37,6 +37,7 @@ namespace PaystubJsonApp.Views
             SaveFileButton.Click += vm.SaveFile;
             OpenFileButton.Click += vm.OpenFile;
             OpenSavePath.Click += vm.OpenSavePath;
+            repairOrderView_root.Loaded += vm.Calculate;
         }
 
         private void ComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )

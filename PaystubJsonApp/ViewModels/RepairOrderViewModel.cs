@@ -22,6 +22,10 @@ namespace PaystubJsonApp.ViewModels
         private bool _overwriteFile;
         private string _savePath;
         private bool NotSaved { get; set; }
+
+        #region Calc
+        private double _totalFlatrateTime;
+        #endregion
         #endregion
 
         #region - Constructors
@@ -75,6 +79,11 @@ namespace PaystubJsonApp.ViewModels
                 RepairOrderCollection = newROs;
             }
             NotSaved = false;
+        }
+
+        public void Calculate( object sender, EventArgs e )
+        {
+            TotalFlatrateTime = RepairOrderCollection.RepairOrders.Sum(ro => ro.TotalTime);
         }
 
         public void OpenSavePath( object sender, EventArgs e ) =>
@@ -200,6 +209,18 @@ namespace PaystubJsonApp.ViewModels
             }
         }
         public bool SavePathCorrect => FileManager.CheckFilePath(SavePath);
+
+        #region Calc
+        public double TotalFlatrateTime
+        {
+            get { return _totalFlatrateTime; }
+            set
+            {
+                _totalFlatrateTime = value;
+                NotifyOfPropertyChange(nameof(TotalFlatrateTime));
+            }
+        }
+        #endregion
         #endregion
     }
 }

@@ -27,6 +27,14 @@ namespace PaystubJsonApp.Models.RepairOrders
             get => _repairOrders;
             set => _repairOrders = value;
         }
+
+        public double FlatrateTimeSum
+        {
+            get
+            {
+                return RepairOrders.Sum(ro => ro.TotalTime);
+            }
+        }
         #endregion
     }
 }
