@@ -77,16 +77,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSettings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CalcBox.xaml.cs">
-      <DependentUpon>CalcBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CalcOutput.xaml.cs">
       <DependentUpon>CalcOutput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FileControl.xaml.cs">
-      <DependentUpon>FileControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FileControlViewModel.cs" />
     <Compile Include="Controls\WorkItemControl.xaml.cs">
       <DependentUpon>WorkItemControl.xaml</DependentUpon>
     </Compile>
@@ -127,15 +120,7 @@
     <Compile Include="Views\WorkOrderView.xaml.cs">
       <DependentUpon>WorkOrderView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\CalcBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\CalcOutput.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\FileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

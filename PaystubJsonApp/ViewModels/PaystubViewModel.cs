@@ -63,11 +63,7 @@ namespace PaystubJsonApp.ViewModels
         {
             OverwriteFile = AppSettings.Default.OverwriteFile;
             NotSaved = false;
-            //FilterSelections = new Dictionary<string, Action>
-            //{
-            //    { "Max", () => SelectedFilterPaystub = FilterMethods. },
-            //    {"Min", () => Console.WriteLine("Min") }
-            //};
+
             FilterSelections = FilterMethods.Filters;
 
             if ( Debug.Debug.Instance.DefaultValues )
@@ -185,7 +181,6 @@ namespace PaystubJsonApp.ViewModels
         {
             if ( e.AddedItems.Count > 0 )
             {
-                //FilterMethods.Filters[ ( string )e.AddedItems[ 0 ] ](PaystubCollection, SelectedProp);
                 SelectedFilterPaystub = FilterSelections[ ( string )e.AddedItems[ 0 ] ](PaystubCollection, SelectedProp);
                 SelectedFilter = (string)e.AddedItems[ 0 ];
             }

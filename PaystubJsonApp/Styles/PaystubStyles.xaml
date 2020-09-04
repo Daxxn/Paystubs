@@ -58,18 +58,4 @@
 		<Setter Property="Block.BorderBrush" Value="Black"/>
 		<Setter Property="Block.BorderThickness" Value="2"/>
 	</Style>
-
-	<!--<Style TargetType="TextBlock" x:Key="calc-value-test">
-		<Setter Property="ContentTemplate">
-			<Setter.Value>
-				<DataTemplate>
-					<Border BorderBrush="Black" BorderThickness="2">
-						<TextBlock>
-							<ContentPresenter/>
-						</TextBlock>
-					</Border>
-				</DataTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>-->
 </ResourceDictionary>

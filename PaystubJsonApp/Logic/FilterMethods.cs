@@ -12,7 +12,8 @@ namespace PaystubJsonApp.Logic
     public static class FilterMethods
     {
         #region - Fields & Properties
-        public static Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>> Filters = new Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>>
+        public static Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>> Filters = 
+            new Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>>
         {
             { "Max", (collection, prop) => MaxFunc(collection, prop) },
             { "Min", (collection, prop) => MinFunc(collection, prop) }
