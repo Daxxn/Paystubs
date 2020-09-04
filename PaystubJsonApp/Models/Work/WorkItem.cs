@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaystubJsonApp.Models.ReapirOrders
+namespace PaystubJsonApp.Models.Work
 {
     public class WorkItem : ModelBase
     {

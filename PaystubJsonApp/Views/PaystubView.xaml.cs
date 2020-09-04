@@ -27,6 +27,7 @@ namespace PaystubJsonApp.Views
             InitializeComponent();
             DataContext = vm;
             InitializeEvents(vm);
+            propCombo.ItemsSource = Enum.GetValues(typeof(Prop));
             if ( Debug.Debug.Instance.Active )
             {
                 KeyDown += Debug.Debug.Instance.PostEvent;
@@ -42,6 +43,13 @@ namespace PaystubJsonApp.Views
             SaveFileButton.Click += vm.HandleSaveFile;
             OpenFileButton.Click += vm.HandleOpenFile;
             MainDataGrid.CellEditEnding += vm.HandleCellChanged;
+            MainDataGrid.SelectionChanged += vm.Calculate;
+            MainDataGrid.SelectedCellsChanged += vm.Calculate;
+            MainDataGrid.CellEditEnding += vm.Calculate;
+            MainDataGrid.Initialized += vm.Calculate;
+            PaystubViewControl.Loaded += vm.Calculate;
+            filterCombo.SelectionChanged += vm.FilterSelectionChanged;
+            propCombo.SelectionChanged += vm.PropSelectionChanged;
         }
 
         private void HandleAddViewOpen( object sender, EventArgs e )
@@ -52,16 +60,6 @@ namespace PaystubJsonApp.Views
             AddView addView = new AddView(addVm);
             Debug.Debug.Instance.Post("Event", "Opening AddView");
             addView.ShowDialog();
-        }
-
-        /// <summary>
-        /// Not sure if i want to use this.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DatePicker_SelectedDateChanged( object sender, SelectionChangedEventArgs e )
-        {
-
         }
     }
 }

@@ -77,6 +77,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CalcBox.xaml.cs">
+      <DependentUpon>CalcBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CalcOutput.xaml.cs">
+      <DependentUpon>CalcOutput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FileControl.xaml.cs">
       <DependentUpon>FileControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +101,7 @@
     <Compile Include="Exceptions\UnknownWorkItemException.cs" />
     <Compile Include="FileControl\FileDialogController.cs" />
     <Compile Include="FileControl\FileManager.cs" />
+    <Compile Include="Logic\FilterMethods.cs" />
     <Compile Include="Logic\TextHelper.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\RepairOrders\RepairOrder.cs" />
@@ -120,6 +127,14 @@
     <Compile Include="Views\WorkOrderView.xaml.cs">
       <DependentUpon>WorkOrderView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\CalcBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CalcOutput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

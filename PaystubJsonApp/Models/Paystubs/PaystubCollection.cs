@@ -61,6 +61,8 @@ namespace PaystubJsonApp.Models.Paystubs
 
         #region - Full Properties
         public decimal AverageGross => Paystubs is null || Paystubs.Count == 0 ? 0 : Paystubs.Average(stub => stub.Gross);
+        public decimal AverageNet => Paystubs is null || Paystubs.Count == 0 ? 0 : Paystubs.Average(stub => stub.Net);
+        public double AverageTax => Paystubs is null || Paystubs.Count == 0 ? 0 : Paystubs.Average(stub => stub.Hours);
         #endregion
     }
 }

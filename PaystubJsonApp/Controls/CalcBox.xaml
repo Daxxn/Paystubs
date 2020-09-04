@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="PaystubJsonApp.Controls.CalcBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PaystubJsonApp.Controls"
+			 x:Name="root"
+			 Grid.Column="1"
+             mc:Ignorable="d">
+	<UserControl.ContentTemplate>
+		<DataTemplate>
+			<Border
+				BorderBrush="{StaticResource units-border-brush}"
+				BorderThickness="1"
+				CornerRadius="2"
+			>
+				<TextBlock Text="{Binding Text, ElementName=root}"/>
+			</Border>
+		</DataTemplate>
+	</UserControl.ContentTemplate>
+</UserControl>
