@@ -12,14 +12,14 @@ namespace PaystubJsonApp.Logic
     public static class FilterMethods
     {
         #region - Fields & Properties
-        public static Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>> Filters = 
+        public static Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>> PaystubFilters = 
             new Dictionary<string, Func<PaystubCollection, Prop, PaystubModel>>
         {
-            { "Max", (collection, prop) => MaxFunc(collection, prop) },
-            { "Min", (collection, prop) => MinFunc(collection, prop) }
+            { "Max", (collection, prop) => PaystubMaxFunc(collection, prop) },
+            { "Min", (collection, prop) => PaystubMinFunc(collection, prop) }
         };
 
-        public static Func<PaystubCollection, Prop, PaystubModel> MaxFunc = ( collection, prop ) =>
+        public static Func<PaystubCollection, Prop, PaystubModel> PaystubMaxFunc = ( collection, prop ) =>
         {
             switch ( prop )
             {
@@ -36,7 +36,7 @@ namespace PaystubJsonApp.Logic
             }
         };
 
-        public static Func<PaystubCollection, Prop, PaystubModel> MinFunc = ( collection, prop ) =>
+        public static Func<PaystubCollection, Prop, PaystubModel> PaystubMinFunc = ( collection, prop ) =>
         {
             switch ( prop )
             {

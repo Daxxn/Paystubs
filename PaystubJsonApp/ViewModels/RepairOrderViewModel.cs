@@ -25,6 +25,9 @@ namespace PaystubJsonApp.ViewModels
 
         #region Calc
         private double _totalFlatrateTime;
+        private TimeSpan _dateDelta;
+
+        private RepairOrder _highestRO;
         #endregion
         #endregion
 
@@ -44,7 +47,7 @@ namespace PaystubJsonApp.ViewModels
                 RONumber = 111,
                 Date = new DateTime(2020, 5, 5)
             });
-            ;
+            Calculate(null, null);
         }
 
         public void RemoveWorkFromRepairOrder( WorkItem selectedItem, RepairOrder currentRO )
@@ -53,6 +56,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 currentRO.Work.RemoveWork(selectedItem);
             }
+            Calculate(null, null);
         }
 
         public void AddWorkToRepairOrder( WorkItem selectedItem, RepairOrder currentRO )
@@ -61,6 +65,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 currentRO.Work.AddWork(selectedItem);
             }
+            Calculate(null, null);
         }
 
         public void SaveFile( object sender, EventArgs e )
@@ -84,6 +89,15 @@ namespace PaystubJsonApp.ViewModels
         public void Calculate( object sender, EventArgs e )
         {
             TotalFlatrateTime = RepairOrderCollection.RepairOrders.Sum(ro => ro.TotalTime);
+            var highestTime = RepairOrderCollection.RepairOrders.Max(ro => ro.TotalTime);
+            HighestRO = RepairOrderCollection.RepairOrders.First(ro => ro.TotalTime == highestTime);
+            CalcDateDelta();
+        }
+        private void CalcDateDelta( )
+        {
+            var minDate = RepairOrderCollection.RepairOrders.Min(ro => ro.Date);
+            var maxDate = RepairOrderCollection.RepairOrders.Max(ro => ro.Date);
+            DateDelta = maxDate.Subtract(minDate);
         }
 
         public void OpenSavePath( object sender, EventArgs e ) =>
@@ -218,6 +232,26 @@ namespace PaystubJsonApp.ViewModels
             {
                 _totalFlatrateTime = value;
                 NotifyOfPropertyChange(nameof(TotalFlatrateTime));
+            }
+        }
+
+        public TimeSpan DateDelta
+        {
+            get { return _dateDelta; }
+            set
+            {
+                _dateDelta = value;
+                NotifyOfPropertyChange(nameof(DateDelta));
+            }
+        }
+
+        public RepairOrder HighestRO
+        {
+            get { return _highestRO; }
+            set
+            {
+                _highestRO = value;
+                NotifyOfPropertyChange(nameof(HighestRO));
             }
         }
         #endregion

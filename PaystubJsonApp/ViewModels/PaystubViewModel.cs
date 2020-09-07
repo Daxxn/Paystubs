@@ -64,7 +64,7 @@ namespace PaystubJsonApp.ViewModels
             OverwriteFile = AppSettings.Default.OverwriteFile;
             NotSaved = false;
 
-            FilterSelections = FilterMethods.Filters;
+            FilterSelections = FilterMethods.PaystubFilters;
 
             if ( Debug.Debug.Instance.DefaultValues )
             {

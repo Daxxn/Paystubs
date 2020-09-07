@@ -386,7 +386,45 @@
 						/>
 
 						<TextBlock Grid.Row="2" Grid.Column="0">Total Job Time</TextBlock>
-						<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=TotalFlatrateTime}"/>
+						<TextBlock
+							Grid.Row="2"
+							Grid.Column="1"
+							Text="{Binding Path=TotalFlatrateTime}"
+						/>
+
+						<TextBlock Grid.Row="3" Grid.Column="0">Date Delta</TextBlock>
+						<TextBlock
+							Grid.Row="3"
+							Grid.Column="1"
+							Text="{Binding Path=DateDelta.Days}"
+						/>
+					</Grid>
+				</Border>
+
+				<Border Grid.Column="1">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center">Highest Time</TextBlock>
+
+						<TextBlock Grid.Row="2">RO Number</TextBlock>
+						<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=HighestRO.RONumber}"/>
+
+						<TextBlock Grid.Row="3">Date</TextBlock>
+						<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=HighestRO.Date}"/>
+
+						<TextBlock Grid.Row="4">Job Count</TextBlock>
+						<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=HighestRO.Work.Count}"/>
 					</Grid>
 				</Border>
 			</Grid>
