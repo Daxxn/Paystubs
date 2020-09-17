@@ -167,6 +167,16 @@ namespace PaystubJsonApp.ViewModels
                 NotifyOfPropertyChange(nameof(NotSaved));
             }
         }
+
+        #region Calc Props
+        public int TotalWork
+        {
+            get
+            {
+                return AllWork.Data.Count;
+            }
+        }
+        #endregion
         #endregion
     }
 }

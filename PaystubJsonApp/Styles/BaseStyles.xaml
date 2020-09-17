@@ -99,4 +99,28 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+	<!--#region Calc Styles-->
+	<Style TargetType="Border" x:Key="calc-main-border">
+		<Setter Property="Padding" Value="2"/>
+		<Setter Property="Margin" Value="1"/>
+		<Setter Property="BorderBrush" Value="{StaticResource main-border-brush}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="CornerRadius" Value="2"/>
+	</Style>
+
+	<Style TargetType="TextBlock" x:Key="calc-title">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="FontSize" Value="13"/>
+		<Setter Property="Grid.ColumnSpan" Value="2"/>
+	</Style>
+
+	<Style TargetType="Border" x:Key="calc-value-border">
+		<Setter Property="Grid.Column" Value="1"/>
+		<Setter Property="Background" Value="{StaticResource base-box-bg-brush}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource units-border-brush}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Margin" Value="1"/>
+	</Style>
+	<!--#endregion-->
 </ResourceDictionary>

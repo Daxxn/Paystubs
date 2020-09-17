@@ -5,7 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:PaystubJsonApp.Views"
 			 xmlns:controls="clr-namespace:PaystubJsonApp.Controls"
-			 mc:Ignorable="d" Background="Beige"
+			 mc:Ignorable="d"
 			 x:Name="repairOrderView_root"
 			 d:DesignHeight="450" d:DesignWidth="800">
 	<Grid>
@@ -356,7 +356,7 @@
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 
-				<Border Grid.Column="0">
+				<Border Grid.Column="0" Style="{StaticResource calc-main-border}">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
@@ -369,39 +369,35 @@
 							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
 
-						<TextBlock
-							Grid.ColumnSpan="2"
-							HorizontalAlignment="Center"
-						>
+						<TextBlock Style="{StaticResource calc-title}">
 							Overall
 						</TextBlock>
 
 						<TextBlock Grid.Row="1" Grid.Column="0">
 							Total Repair Orders
 						</TextBlock>
-						<TextBlock
+						<Border
 							Grid.Row="1"
-							Grid.Column="1"
-							Text="{Binding Path=RepairOrderCollection.RepairOrders.Count}"
-						/>
+							Style="{StaticResource calc-value-border}"
+						>
+							<TextBlock
+								Text="{Binding Path=RepairOrderCollection.RepairOrders.Count}"
+							/>
+						</Border>
 
 						<TextBlock Grid.Row="2" Grid.Column="0">Total Job Time</TextBlock>
-						<TextBlock
-							Grid.Row="2"
-							Grid.Column="1"
-							Text="{Binding Path=TotalFlatrateTime}"
-						/>
+						<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
+							<TextBlock Text="{Binding Path=TotalFlatrateTime}"/>
+						</Border>
 
 						<TextBlock Grid.Row="3" Grid.Column="0">Date Delta</TextBlock>
-						<TextBlock
-							Grid.Row="3"
-							Grid.Column="1"
-							Text="{Binding Path=DateDelta.Days}"
-						/>
+						<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
+							<TextBlock Text="{Binding Path=DateDelta.Days}"/>
+						</Border>
 					</Grid>
 				</Border>
 
-				<Border Grid.Column="1">
+				<Border Grid.Column="1" Style="{StaticResource calc-main-border}">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
@@ -415,16 +411,22 @@
 							<RowDefinition Height="Auto"/>
 						</Grid.RowDefinitions>
 
-						<TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center">Highest Time</TextBlock>
+						<TextBlock Style="{StaticResource calc-title}">Highest Time</TextBlock>
 
 						<TextBlock Grid.Row="2">RO Number</TextBlock>
-						<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=HighestRO.RONumber}"/>
+						<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
+							<TextBlock Text="{Binding Path=HighestRO.RONumber}"/>
+						</Border>
 
 						<TextBlock Grid.Row="3">Date</TextBlock>
-						<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=HighestRO.Date}"/>
+						<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
+							<TextBlock Text="{Binding Path=HighestRO.Date}"/>
+						</Border>
 
 						<TextBlock Grid.Row="4">Job Count</TextBlock>
-						<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=HighestRO.Work.Count}"/>
+						<Border Grid.Row="4" Style="{StaticResource calc-value-border}">
+							<TextBlock Text="{Binding Path=HighestRO.Work.Count}"/>
+						</Border>
 					</Grid>
 				</Border>
 			</Grid>
