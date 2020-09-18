@@ -13,6 +13,7 @@ namespace PaystubJsonApp.Models.Work
         public string Description { get; set; } = "";
         public double _flatRateTime;
         public int WorkIdNumber { get; set; }
+        public bool IsFavorited { get; set; }
         #endregion
 
         #region - Constructors

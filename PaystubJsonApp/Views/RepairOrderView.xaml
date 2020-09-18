@@ -167,7 +167,7 @@
 						</Grid>
 					</Border>
 
-					<Border Grid.Row="2" Padding="2">
+					<Border Grid.Row="2">
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*"/>
@@ -200,7 +200,11 @@
 		<!--#endregion-->
 
 		<!--#region Data-->
-		<Border Grid.Row="1" Visibility="{Binding Path=NoROs}">
+		<Border
+			Grid.Row="1"
+			Visibility="{Binding Path=NoROs}"
+			Style="{StaticResource RO-items-control-border}"
+		>
 			<TextBlock >No RepairOrders</TextBlock>
 		</Border>
 
@@ -268,10 +272,23 @@
 												ItemsSource="{
 													Binding Path=Work.WorkCollection.Data
 												}"
+												Grid.IsSharedSizeScope="True"
 											>
 												<ComboBox.ItemTemplate>
 													<DataTemplate>
-														<TextBlock Text="{Binding Path=Name}"/>
+														<Grid>
+															<Grid.ColumnDefinitions>
+																<ColumnDefinition SharedSizeGroup="id-title"/>
+																<ColumnDefinition SharedSizeGroup="id-val"/>
+																<ColumnDefinition Width="6"/>
+																<ColumnDefinition SharedSizeGroup="name-title"/>
+																<ColumnDefinition SharedSizeGroup="name-val"/>
+															</Grid.ColumnDefinitions>
+															<TextBlock Grid.Column="0">ID</TextBlock>
+															<TextBlock Grid.Column="1" Text="{Binding Path=WorkIdNumber}"/>
+															<TextBlock Grid.Column="3">Name</TextBlock>
+															<TextBlock Grid.Column="4" Text="{Binding Path=Name}"/>
+														</Grid>
 													</DataTemplate>
 												</ComboBox.ItemTemplate>
 											</ComboBox>
@@ -349,88 +366,94 @@
 		<!--#endregion-->
 		
 		<!--#region Calc Output-->
-		<Border Grid.Row="2">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
+		<Expander Header="Calc" Grid.Row="2">
+			<Border
+				BorderBrush="{StaticResource main-border-brush}"
+				BorderThickness="2"
+				CornerRadius="2"
+			>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
 
-				<Border Grid.Column="0" Style="{StaticResource calc-main-border}">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-						</Grid.RowDefinitions>
+					<Border Grid.Column="0" Style="{StaticResource calc-main-border}">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-						<TextBlock Style="{StaticResource calc-title}">
+							<TextBlock Style="{StaticResource calc-title}">
 							Overall
-						</TextBlock>
+							</TextBlock>
 
-						<TextBlock Grid.Row="1" Grid.Column="0">
+							<TextBlock Grid.Row="1" Grid.Column="0">
 							Total Repair Orders
-						</TextBlock>
-						<Border
+							</TextBlock>
+							<Border
 							Grid.Row="1"
 							Style="{StaticResource calc-value-border}"
 						>
-							<TextBlock
+								<TextBlock
 								Text="{Binding Path=RepairOrderCollection.RepairOrders.Count}"
 							/>
-						</Border>
+							</Border>
 
-						<TextBlock Grid.Row="2" Grid.Column="0">Total Job Time</TextBlock>
-						<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=TotalFlatrateTime}"/>
-						</Border>
+							<TextBlock Grid.Row="2" Grid.Column="0">Total Job Time</TextBlock>
+							<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=TotalFlatrateTime}"/>
+							</Border>
 
-						<TextBlock Grid.Row="3" Grid.Column="0">Date Delta</TextBlock>
-						<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=DateDelta.Days}"/>
-						</Border>
-					</Grid>
-				</Border>
+							<TextBlock Grid.Row="3" Grid.Column="0">Date Delta</TextBlock>
+							<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=DateDelta.Days}"/>
+							</Border>
+						</Grid>
+					</Border>
 
-				<Border Grid.Column="1" Style="{StaticResource calc-main-border}">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-						</Grid.RowDefinitions>
+					<Border Grid.Column="1" Style="{StaticResource calc-main-border}">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-						<TextBlock Style="{StaticResource calc-title}">Highest Time</TextBlock>
+							<TextBlock Style="{StaticResource calc-title}">Highest Time</TextBlock>
 
-						<TextBlock Grid.Row="2">RO Number</TextBlock>
-						<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=HighestRO.RONumber}"/>
-						</Border>
+							<TextBlock Grid.Row="2">RO Number</TextBlock>
+							<Border Grid.Row="2" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=HighestRO.RONumber}"/>
+							</Border>
 
-						<TextBlock Grid.Row="3">Date</TextBlock>
-						<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=HighestRO.Date}"/>
-						</Border>
+							<TextBlock Grid.Row="3">Date</TextBlock>
+							<Border Grid.Row="3" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=HighestRO.Date}"/>
+							</Border>
 
-						<TextBlock Grid.Row="4">Job Count</TextBlock>
-						<Border Grid.Row="4" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=HighestRO.Work.Count}"/>
-						</Border>
-					</Grid>
-				</Border>
-			</Grid>
-		</Border>
+							<TextBlock Grid.Row="4">Job Count</TextBlock>
+							<Border Grid.Row="4" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=HighestRO.Work.Count}"/>
+							</Border>
+						</Grid>
+					</Border>
+				</Grid>
+			</Border>
+		</Expander>
 		<!--#endregion-->
 	</Grid>
 </UserControl>

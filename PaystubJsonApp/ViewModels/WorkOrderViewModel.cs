@@ -17,6 +17,9 @@ namespace PaystubJsonApp.ViewModels
         private WorkCollection _allWork;
         private WorkItem _selectedWorkItem;
 
+        private ObservableCollection<WorkItem> _commonWork;
+        private ObservableCollection<WorkItem> _favoritedWork;
+
         private int _newWorkID;
 
         private bool _overwriteFile;
@@ -24,6 +27,8 @@ namespace PaystubJsonApp.ViewModels
         private bool _notSaved;
 
         private bool _doesItemExist;
+
+        private int _totalWork;
         #endregion
 
         #region - Constructors
@@ -31,6 +36,7 @@ namespace PaystubJsonApp.ViewModels
         {
             OverwriteFile = AppSettings.Default.OverwriteFile;
             AllWork = WorkCollection.Instance;
+            CommonWork = new ObservableCollection<WorkItem>();
         }
         #endregion
 
@@ -49,6 +55,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 SavePath = newPath;
                 AllWork = newWork;
+                TotalWork = AllWork.Data.Count;
             }
             NotSaved = false;
         }
@@ -70,6 +77,7 @@ namespace PaystubJsonApp.ViewModels
             var data = element.DataContext as WorkItem;
             AllWork.Update(data);
             NotSaved = true;
+            UpdateWorkLists(data);
         }
 
         public void AddWorkItem( object sender, EventArgs e )
@@ -79,6 +87,24 @@ namespace PaystubJsonApp.ViewModels
                 WorkIdNumber = NewWorkID,
             };
             DoesItemExist = AllWork.Add(NewWorkID, newWorkItem);
+
+            if ( !DoesItemExist )
+            {
+                UpdateWorkLists(newWorkItem);
+                TotalWork = AllWork.Data.Count;
+            }
+        }
+
+        public void UpdateWorkLists( WorkItem work )
+        {
+            if ( CommonWork.Count > 10 )
+            {
+                CommonWork.RemoveAt(10 - 1);
+            }
+            CommonWork.Remove(work);
+            CommonWork.Insert(0, work);
+
+            FavoritedWork = new ObservableCollection<WorkItem>(AllWork.Data.Where(w => w.IsFavorited == true));
         }
         #endregion
 
@@ -90,6 +116,7 @@ namespace PaystubJsonApp.ViewModels
             {
                 _allWork = value;
                 NotSaved = true;
+                TotalWork = value.Data.Count;
                 NotifyOfPropertyChange(nameof(AllWork));
             }
         }
@@ -99,7 +126,12 @@ namespace PaystubJsonApp.ViewModels
             get { return _selectedWorkItem; }
             set
             {
+                var prev = _selectedWorkItem;
                 _selectedWorkItem = value;
+                if ( prev != value )
+                {
+                    UpdateWorkLists(value);
+                }
                 NotifyOfPropertyChange(nameof(SelectedWorkItem));
             }
         }
@@ -168,12 +200,35 @@ namespace PaystubJsonApp.ViewModels
             }
         }
 
+        #region Common Controls
+        public ObservableCollection<WorkItem> CommonWork
+        {
+            get { return _commonWork; }
+            set
+            {
+                _commonWork = value;
+                NotifyOfPropertyChange(nameof(CommonWork));
+            }
+        }
+        public ObservableCollection<WorkItem> FavoritedWork
+        {
+            get { return _favoritedWork; }
+            set
+            {
+                _favoritedWork = value;
+                NotifyOfPropertyChange(nameof(FavoritedWork));
+            }
+        }
+        #endregion
+
         #region Calc Props
         public int TotalWork
         {
-            get
+            get { return _totalWork; }
+            set
             {
-                return AllWork.Data.Count;
+                _totalWork = value;
+                NotifyOfPropertyChange(nameof(TotalWork));
             }
         }
         #endregion

@@ -4,5 +4,13 @@
 	<Style TargetType="TextBox" x:Key="work-item-desc-edit">
 		<Setter Property="AcceptsReturn" Value="True"/>
 		<Setter Property="MaxLines" Value="4"/>
+		<Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+		<Setter Property="BorderThickness" Value="0"/>
+	</Style>
+
+	<Style TargetType="Border" x:Key="work-data-border">
+		<Setter Property="BorderBrush" Value="{StaticResource main-border-brush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="Padding" Value="1"/>
 	</Style>
 </ResourceDictionary>

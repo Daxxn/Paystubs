@@ -6,13 +6,8 @@
 			 xmlns:local="clr-namespace:PaystubJsonApp.Views"
 			 xmlns:vc="clr-namespace:PaystubJsonApp.ValueConverters"
 			 xmlns:controls="clr-namespace:PaystubJsonApp.Controls"
-			 mc:Ignorable="d" Background="Beige"
+			 mc:Ignorable="d"
 			 d:DesignHeight="450" d:DesignWidth="800">
-	<UserControl.Resources>
-		<ResourceDictionary>
-			<vc:VisibilityConverter x:Key="visibilityConverter"/>
-		</ResourceDictionary>
-	</UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -225,86 +220,194 @@
 		<!--#endregion-->
 
 		<!--#region Data-->
-		<Border Grid.Row="1">
-			<DataGrid
-				x:Name="WorkOrdersDataGrid"
-				CanUserAddRows="False"
-				SelectedItem="{
-					Binding Path=SelectedWorkItem,
-					UpdateSourceTrigger=PropertyChanged
-				}"
-				ItemsSource="{
-					Binding Path=AllWork.Data,
-					UpdateSourceTrigger=PropertyChanged
-				}"
-				AutoGenerateColumns="False">
-				<DataGrid.Columns>
-					<DataGridTextColumn
-						Header="Id"
-						Binding="{Binding Path=WorkIdNumber}"
-					/>
-					<DataGridTextColumn
-						Header="Job"
-						Binding="{Binding Path=Name}"
-					/>
-					<DataGridTextColumn
-						Header="Time"
-						Binding="{Binding Path=FlatRateTime}"
-					/>
-					<DataGridTemplateColumn Header="Desc">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding Path=Description}"/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-						<DataGridTemplateColumn.CellEditingTemplate>
-							<DataTemplate>
-								<TextBox
-									Style="{StaticResource work-item-desc-edit}"
-									Text="{Binding Path=Description}"
-								/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellEditingTemplate>
-					</DataGridTemplateColumn>
-				</DataGrid.Columns>
-			</DataGrid>
+		<Border Grid.Row="1" Style="{StaticResource work-data-border}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="5"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="5"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0">
+					<TextBlock Style="{StaticResource title-base}">
+						All Work
+					</TextBlock>
+					<DataGrid
+						x:Name="WorkOrdersDataGrid"
+						CanUserAddRows="False"
+						SelectedItem="{
+							Binding Path=SelectedWorkItem,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+						ItemsSource="{
+							Binding Path=AllWork.Data,
+							UpdateSourceTrigger=PropertyChanged
+						}"
+						AutoGenerateColumns="False"
+					>
+						<DataGrid.Columns>
+							<DataGridCheckBoxColumn
+								Binding="{Binding Path=IsFavorited}"
+								MinWidth="20"
+							/>
+							<DataGridTextColumn
+								Header="Id"
+								Binding="{Binding Path=WorkIdNumber}"
+								MinWidth="30"
+							/>
+							<DataGridTextColumn
+								Header="Job"
+								Binding="{Binding Path=Name}"
+								MinWidth="50"
+							/>
+							<DataGridTextColumn
+								Header="Time"
+								Binding="{Binding Path=FlatRateTime}"
+								MinWidth="30"
+							/>
+							<DataGridTemplateColumn Header="Desc" Width="*" MinWidth="100">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox
+											Text="{Binding Path=Description}"
+											Style="{StaticResource work-item-desc-edit}"
+										/>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+				</StackPanel>
+
+				<GridSplitter Grid.Column="1" Style="{StaticResource splitter-vert}"/>
+
+				<StackPanel Grid.Column="2">
+					<TextBlock Style="{StaticResource title-base}">
+						Recent Work
+					</TextBlock>
+					<DataGrid
+						Grid.Column="2"
+						x:Name="CommonWorkDataGrid"
+						ItemsSource="{Binding Path=CommonWork}"
+						CanUserAddRows="False"
+						CanUserDeleteRows="False"
+						CanUserSortColumns="False"
+						AutoGenerateColumns="False"
+					>
+						<DataGrid.Columns>
+							<DataGridTextColumn
+								Header="Id"
+								Binding="{Binding Path=WorkIdNumber}"
+								MinWidth="30"
+							/>
+							<DataGridTextColumn
+								Header="Job"
+								Binding="{Binding Path=Name}"
+								MinWidth="50"
+							/>
+							<DataGridTextColumn
+								Header="Time"
+								Binding="{Binding Path=FlatRateTime}"
+								MinWidth="30"
+							/>
+							<DataGridTemplateColumn Header="Desc" Width="*" MinWidth="100">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox
+											Text="{Binding Path=Description}"
+											Style="{StaticResource work-item-desc-edit}"
+										/>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+				</StackPanel>
+
+				<GridSplitter Grid.Column="3" Style="{StaticResource splitter-vert}"/>
+
+				<StackPanel Grid.Column="4">
+					<TextBlock Style="{StaticResource title-base}">
+						Favorited Work
+					</TextBlock>
+					<DataGrid
+						x:Name="FavoriteWorkDataGrid"
+						ItemsSource="{Binding Path=FavoritedWork}"
+						CanUserAddRows="False"
+						CanUserDeleteRows="False"
+						CanUserSortColumns="False"
+						AutoGenerateColumns="False"
+					>
+						<DataGrid.Columns>
+								<DataGridTextColumn
+								Header="Id"
+								Binding="{Binding Path=WorkIdNumber}"
+								MinWidth="30"
+							/>
+							<DataGridTextColumn
+								Header="Job"
+								Binding="{Binding Path=Name}"
+								MinWidth="50"
+							/>
+							<DataGridTextColumn
+								Header="Time"
+								Binding="{Binding Path=FlatRateTime}"
+								MinWidth="30"
+							/>
+							<DataGridTemplateColumn Header="Desc" Width="*" MinWidth="100">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBox
+											Text="{Binding Path=Description}"
+											Style="{StaticResource work-item-desc-edit}"
+										/>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+				</StackPanel>
+			</Grid>
 		</Border>
 		<!--#endregion-->
 		
 		<!--#region Calc Display-->
-		<Border Grid.Row="2">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
+		<Expander Header="Calc" Grid.Row="2">
+			<Border>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
 
-				<Border Grid.Column="0">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-							<RowDefinition Height="Auto"/>
-						</Grid.RowDefinitions>
+					<Border Grid.Column="0">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-						<TextBlock Style="{StaticResource calc-title}">Totals</TextBlock>
+							<TextBlock Style="{StaticResource calc-title}">Totals</TextBlock>
 
-						<TextBlock Grid.Row="1">Work Total</TextBlock>
-						<Border Grid.Row="1" Style="{StaticResource calc-value-border}">
-							<TextBlock Text="{Binding Path=TotalWork}"/>
-						</Border>
-					</Grid>
-				</Border>
-			</Grid>
-		</Border>
+							<TextBlock Grid.Row="1">Work Total</TextBlock>
+							<Border Grid.Row="1" Style="{StaticResource calc-value-border}">
+								<TextBlock Text="{Binding Path=TotalWork}"/>
+							</Border>
+						</Grid>
+					</Border>
+				</Grid>
+			</Border>
+		</Expander>
 		<!--#endregion-->
 	</Grid>
 </UserControl>

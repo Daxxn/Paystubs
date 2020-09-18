@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PaystubJsonApp"
 		xmlns:views="clr-namespace:PaystubJsonApp.Views"
         mc:Ignorable="d"
-        Title="Paystubs" Height="900" Width="800">
+        Title="Paystubs" Top="10" Left="10">
 	<TabControl
 		x:Name="TabControl"
 		TabStripPlacement="Top"

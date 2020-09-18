@@ -11,7 +11,6 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
-			<RowDefinition Height="5"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
@@ -263,33 +262,27 @@
 		</Grid>
 		<!--#endregion-->
 
-		<GridSplitter
-			Grid.Row="1"
-			Height="5"
-			HorizontalAlignment="Stretch"
-			VerticalAlignment="Center"
-		/>
-
 		<!--#region Data View-->
-		<Grid Grid.Row="2">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
+		<Expander Grid.Row="1" Header="Calc">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
 
-			<controls:CalcOutput
+				<controls:CalcOutput
 				Title="Averages"
 				Gross="{Binding Path=AverageGross}"
 				Net="{Binding Path=AverageNet}"
 				Hours="{Binding Path=AverageHours}"
 				Flatrate="{Binding Path=AverageFlatrate}"
 			/>
-			
-			<controls:CalcOutput
+
+				<controls:CalcOutput
 				Grid.Column="1"
 				Title="Sums"
 				Gross="{Binding Path=GrossSum}"
@@ -298,34 +291,34 @@
 				Flatrate="{Binding Path=FlatrateSum}"
 			/>
 
-			<Border Grid.Column="2">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-
+				<Border Grid.Column="2">
 					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
 
-						<ComboBox
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<ComboBox
 							x:Name="filterCombo"
 							Grid.Column="0"
 							SelectedItem="{Binding Path=SelectedFilter}"
 							ItemsSource="{Binding Path=FilterSelections.Keys}"
 						/>
 
-						<ComboBox
+							<ComboBox
 							x:Name="propCombo"
 							Grid.Column="1"
 							SelectedItem="{Binding Path=SelectedProp}"
 						/>
-					</Grid>
+						</Grid>
 
-					<controls:CalcOutput
+						<controls:CalcOutput
 						Grid.Row="1"
 						Title="{Binding Path=FilterPaystubTitle}"
 						Gross="{Binding Path=SelectedFilterpaystub.Gross}"
@@ -333,9 +326,10 @@
 						Hours="{Binding Path=SelectedFilterpaystub.Hours}"
 						Flatrate="{Binding Path=SelectedFilterpaystub.Flatrate}"
 					/>
-				</Grid>
-			</Border>
-		</Grid>
+					</Grid>
+				</Border>
+			</Grid>
+		</Expander>
 		<!--#endregion-->
 	</Grid>
 </UserControl>

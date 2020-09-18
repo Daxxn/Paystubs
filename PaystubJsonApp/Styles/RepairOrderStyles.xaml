@@ -64,6 +64,12 @@
 		<Setter Property="Padding" Value="2"/>
 	</Style>
 
+	<Style TargetType="Border" x:Key="RO-main-data-border">
+		<Setter Property="Padding" Value="2"/>
+		<Setter Property="BorderBrush" Value="{StaticResource main-border-brush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+	</Style>
+
 	<Style TargetType="Expander" x:Key="RO-item-work-expander">
 		<Setter Property="ExpandDirection" Value="Down"/>
 		<Setter Property="HeaderTemplate">

@@ -1,6 +1,7 @@
 ﻿<Application x:Class="PaystubJsonApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:converter="clr-namespace:PaystubJsonApp.ValueConverters">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -11,6 +12,9 @@
 				<ResourceDictionary Source="Styles/RepairOrderStyles.xaml"/>
 				<ResourceDictionary Source="Styles/AddViewStyles.xaml"/>
 				<ResourceDictionary Source="Styles/WorkOrderStyles.xaml"/>
+				<ResourceDictionary>
+					<converter:VisibilityConverter x:Key="visibilityConverter"/>
+				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

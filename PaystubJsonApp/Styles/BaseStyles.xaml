@@ -31,9 +31,26 @@
 	>
 		<Setter Property="FontSize" Value="14"/>
 	</Style>
-	
-	
 
+	<Style TargetType="TextBlock" x:Key="title-base">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="FontSize" Value="13"/>
+	</Style>
+
+	<Style TargetType="GridSplitter" x:Key="splitter-vert">
+		<Setter Property="Width" Value="5"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="Background" Value="{StaticResource button-hover-bg-brush}"/>
+	</Style>
+
+	<Style TargetType="GridSplitter" x:Key="splitter-horz">
+		<Setter Property="Height" Value="5"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="Background" Value="{StaticResource button-hover-bg-brush}"/>
+	</Style>
+	
 	<Style TargetType="Button" x:Key="CustomButton">
 		<Setter Property="Padding" Value="3"/>
 		<Setter Property="FontSize" Value="12"/>
@@ -109,9 +126,7 @@
 		<Setter Property="CornerRadius" Value="2"/>
 	</Style>
 
-	<Style TargetType="TextBlock" x:Key="calc-title">
-		<Setter Property="HorizontalAlignment" Value="Center"/>
-		<Setter Property="FontSize" Value="13"/>
+	<Style TargetType="TextBlock" x:Key="calc-title" BasedOn="{StaticResource title-base}">
 		<Setter Property="Grid.ColumnSpan" Value="2"/>
 	</Style>
 
