@@ -49,16 +49,68 @@
 						Grid.Column="1"
 						Grid.Row="1"
 						TabIndex="1"
-						Text="{Binding Path=NewRepairOrder.RONumber}"
-						/>
+						Text="{Binding Path=RONumber, UpdateSourceTrigger=LostFocus}"
+					>
+						<TextBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem
+									Header="Limit RO Number"
+									IsCheckable="True"
+									IsChecked="{Binding Path=LimitRONumberLength}"
+								/>
+								<MenuItem x:Name="DigitMenu" Header="{Binding Path=RONumberDigitCount}">
+									<MenuItem Header="1"/>
+									<MenuItem Header="2"/>
+									<MenuItem Header="3"/>
+									<MenuItem Header="4"/>
+									<MenuItem Header="5"/>
+									<MenuItem Header="6"/>
+									<MenuItem Header="7"/>
+									<MenuItem Header="8"/>
+								</MenuItem>
+							</ContextMenu>
+						</TextBox.ContextMenu>
+					</TextBox>
 					<TextBlock Grid.Row="2">Date</TextBlock>
-					<DatePicker
-						Grid.Row="2"
-						Grid.Column="1"
-						TabIndex="2"
-						Style="{StaticResource new-RO-date}"
-						SelectedDate="{Binding Path=NewRepairOrder.Date}"
-					/>
+					<Border Grid.Row="2" Grid.Column="1">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<DatePicker
+								TabIndex="2"
+								Style="{StaticResource new-RO-date}"
+								SelectedDate="{Binding Path=NewRODate, UpdateSourceTrigger=PropertyChanged}"
+							/>
+
+							<Grid Grid.Column="1">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="*"/>
+									<RowDefinition Height="*"/>
+								</Grid.RowDefinitions>
+
+								<Button
+									x:Name="DateUpButton"
+									Grid.Row="0"
+									FontSize="8"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+								>
+									/\
+								</Button>
+								<Button
+									x:Name="DateDownButton"
+									Grid.Row="1"
+									FontSize="8"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+								>
+									\/
+								</Button>
+							</Grid>
+						</Grid>
+					</Border>
 
 					<Button
 						IsTabStop="False"

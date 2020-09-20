@@ -38,6 +38,10 @@ namespace PaystubJsonApp.Views
             OpenFileButton.Click += vm.OpenFile;
             OpenSavePath.Click += vm.OpenSavePath;
             repairOrderView_root.Loaded += vm.Calculate;
+            DigitMenu.Click += vm.RONumberDigitSelect;
+
+            DateUpButton.Click += vm.DateUpEvent;
+            DateDownButton.Click += vm.DateDownEvent;
         }
 
         private void ComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
@@ -58,7 +62,6 @@ namespace PaystubJsonApp.Views
                     new string[] { sender.ToString(), e.AddedItems.Count.ToString() }
                 );
             }
-
         }
     }
 }

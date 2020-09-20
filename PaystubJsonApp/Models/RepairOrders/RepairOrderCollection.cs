@@ -18,7 +18,22 @@ namespace PaystubJsonApp.Models.RepairOrders
         #endregion
 
         #region - Methods
+        public bool Contains( int roNumber )
+        {
+            foreach ( var ro in RepairOrders )
+            {
+                if ( ro.RONumber == roNumber )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        public bool Contains( RepairOrder ro )
+        {
+            return RepairOrders.Contains(ro);
+        }
         #endregion
 
         #region - Full Properties
