@@ -14,7 +14,10 @@ namespace PaystubJsonApp.Models.RepairOrders
         #endregion
 
         #region - Constructors
-        public RepairOrderCollection( ) { }
+        public RepairOrderCollection( )
+        {
+            RepairOrders = new ObservableCollection<RepairOrder>();
+        }
         #endregion
 
         #region - Methods

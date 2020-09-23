@@ -21,36 +21,46 @@ namespace PaystubJsonApp.Logic
 
         public static Func<PaystubCollection, Prop, PaystubModel> PaystubMaxFunc = ( collection, prop ) =>
         {
-            switch ( prop )
+            if ( collection.Paystubs != null && collection.Paystubs.Count > 0 )
             {
-                case Prop.Gross:
-                    return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Gross) == p.Gross);
-                case Prop.Net:
-                    return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Net) == p.Net);
-                case Prop.Hours:
-                    return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Hours) == p.Hours);
-                case Prop.Flat:
-                    return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.FlatrateHours) == p.FlatrateHours);
-                default:
-                    throw new ArgumentException("Somehow the prop doesnt exist...", prop.ToString());
+                switch ( prop )
+                {
+                    case Prop.Gross:
+                        return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Gross) == p.Gross);
+                    case Prop.Net:
+                        return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Net) == p.Net);
+                    case Prop.Hours:
+                        return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.Hours) == p.Hours);
+                    case Prop.Flat:
+                        return collection.Paystubs.First(p => collection.Paystubs.Max(s => s.FlatrateHours) == p.FlatrateHours);
+                    default:
+                        throw new ArgumentException("Somehow the prop doesnt exist...", prop.ToString());
+                }
             }
+            else
+                return null;
         };
 
         public static Func<PaystubCollection, Prop, PaystubModel> PaystubMinFunc = ( collection, prop ) =>
         {
-            switch ( prop )
+            if ( collection.Paystubs != null && collection.Paystubs.Count > 0 )
             {
-                case Prop.Gross:
-                    return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Gross) == p.Gross);
-                case Prop.Net:
-                    return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Net) == p.Net);
-                case Prop.Hours:
-                    return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Hours) == p.Hours);
-                case Prop.Flat:
-                    return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.FlatrateHours) == p.FlatrateHours);
-                default:
-                    throw new ArgumentException("Somehow the prop doesnt exist...", prop.ToString());
+                switch ( prop )
+                {
+                    case Prop.Gross:
+                        return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Gross) == p.Gross);
+                    case Prop.Net:
+                        return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Net) == p.Net);
+                    case Prop.Hours:
+                        return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.Hours) == p.Hours);
+                    case Prop.Flat:
+                        return collection.Paystubs.First(p => collection.Paystubs.Min(s => s.FlatrateHours) == p.FlatrateHours);
+                    default:
+                        throw new ArgumentException("Somehow the prop doesnt exist...", prop.ToString());
+                }
             }
+            else
+                return null;
         };
         #endregion
 

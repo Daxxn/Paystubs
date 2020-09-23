@@ -252,14 +252,6 @@
 		<!--#endregion-->
 
 		<!--#region Data-->
-		<Border
-			Grid.Row="1"
-			Visibility="{Binding Path=NoROs}"
-			Style="{StaticResource RO-items-control-border}"
-		>
-			<TextBlock >No RepairOrders</TextBlock>
-		</Border>
-
 		<Border Grid.Row="1" Style="{StaticResource RO-items-control-border}">
 			<ScrollViewer>
 				<ItemsControl

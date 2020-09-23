@@ -27,8 +27,8 @@ namespace PaystubJsonApp.ViewModels
         public MainViewModel( )
         {
             PaystubVM = new PaystubViewModel();
-            RepairOrderVM = new RepairOrderViewModel();
             WorkOrderVM = new WorkOrderViewModel();
+            RepairOrderVM = new RepairOrderViewModel();
         }
         #endregion
 

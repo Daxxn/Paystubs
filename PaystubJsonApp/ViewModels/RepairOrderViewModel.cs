@@ -42,7 +42,14 @@ namespace PaystubJsonApp.ViewModels
         #region - Constructors
         public RepairOrderViewModel( )
         {
-            BuildDebugInstanceData();
+            if ( Debug.Debug.Instance.DefaultValues )
+            {
+                BuildDebugInstanceData();
+            }
+            else
+            {
+                RepairOrderCollection = new RepairOrderCollection();
+            }
             LimitRONumber = true;
             RONumberDigitCount = 6;
             RONumber = MinRONumber;
@@ -59,7 +66,7 @@ namespace PaystubJsonApp.ViewModels
 
         public void AddRepairOrder( object sender, EventArgs e )
         {
-            if ( CheckROList(RONumber) )
+            if ( !CheckROList(RONumber) )
             {
                 RepairOrderCollection.RepairOrders.Add(new RepairOrder()
                 {
@@ -134,10 +141,13 @@ namespace PaystubJsonApp.ViewModels
 
         public void Calculate( object sender, EventArgs e )
         {
-            TotalFlatrateTime = RepairOrderCollection.RepairOrders.Sum(ro => ro.TotalTime);
-            var highestTime = RepairOrderCollection.RepairOrders.Max(ro => ro.TotalTime);
-            HighestRO = RepairOrderCollection.RepairOrders.First(ro => ro.TotalTime == highestTime);
-            CalcDateDelta();
+            if ( RepairOrderCollection.RepairOrders != null && RepairOrderCollection.RepairOrders.Count > 0 )
+            {
+                TotalFlatrateTime = RepairOrderCollection.RepairOrders.Sum(ro => ro.TotalTime);
+                var highestTime = RepairOrderCollection.RepairOrders.Max(ro => ro.TotalTime);
+                HighestRO = RepairOrderCollection.RepairOrders.First(ro => ro.TotalTime == highestTime);
+                CalcDateDelta();
+            }
         }
         private void CalcDateDelta( )
         {
@@ -182,51 +192,48 @@ namespace PaystubJsonApp.ViewModels
 
         private void BuildDebugInstanceData( )
         {
-            if ( Debug.Debug.Instance.DefaultValues )
+            WorkCollection.New(new WorkItem[]
             {
-                WorkCollection.New(new WorkItem[]
+                new WorkItem
                 {
-                    new WorkItem
-                    {
-                        WorkIdNumber=1,
-                        Name="Work A",
-                        Description="This is the first one.",
-                        FlatRateTime=1,
-                    },
-                    new WorkItem
-                    {
-                        WorkIdNumber=2,
-                        Name="Work B",
-                        Description="This is another one.",
-                        FlatRateTime=4,
-                    },
-                    new WorkItem
-                    {
-                        WorkIdNumber=42,
-                        Name="Work A",
-                        Description="This is the Meaning of Life!",
-                        FlatRateTime=1,
-                    },
-                });
-                RepairOrderCollection = new RepairOrderCollection()
+                    WorkIdNumber=1,
+                    Name="Work A",
+                    Description="This is the first one.",
+                    FlatRateTime=1,
+                },
+                new WorkItem
                 {
-                    RepairOrders = new ObservableCollection<RepairOrder>
+                    WorkIdNumber=2,
+                    Name="Work B",
+                    Description="This is another one.",
+                    FlatRateTime=4,
+                },
+                new WorkItem
+                {
+                    WorkIdNumber=42,
+                    Name="Work A",
+                    Description="This is the Meaning of Life!",
+                    FlatRateTime=1,
+                },
+            });
+            RepairOrderCollection = new RepairOrderCollection()
+            {
+                RepairOrders = new ObservableCollection<RepairOrder>
+                {
+                    new RepairOrder
                     {
-                        new RepairOrder
-                        {
-                            RONumber = 111111,
-                            Date = DateTime.Now,
-                            Work = new WorkProvider(WorkCollection.Instance.Data)
-                        },
-                        new RepairOrder
-                        {
-                            RONumber = 222222,
-                            Date = DateTime.Now,
-                            Work = new WorkProvider()
-                        }
+                        RONumber = 111111,
+                        Date = DateTime.Now,
+                        Work = new WorkProvider(WorkCollection.Instance.Data)
+                    },
+                    new RepairOrder
+                    {
+                        RONumber = 222222,
+                        Date = DateTime.Now,
+                        Work = new WorkProvider()
                     }
-                };
-            }
+                }
+            };
         }
         #endregion
 
@@ -247,7 +254,6 @@ namespace PaystubJsonApp.ViewModels
             {
                 _repairOrderCollection = value;
                 NotifyOfPropertyChange(nameof(RepairOrderCollection));
-                NotifyOfPropertyChange(nameof(NoROs));
                 NotSaved = true;
             }
         }
@@ -259,21 +265,6 @@ namespace PaystubJsonApp.ViewModels
             {
                 _allWork = value;
                 NotifyOfPropertyChange(nameof(AllWork));
-            }
-        }
-
-        public Visibility NoROs
-        {
-            get
-            {
-                if ( RepairOrderCollection != null )
-                {
-                    if ( RepairOrderCollection.RepairOrders != null )
-                    {
-                        return RepairOrderCollection.RepairOrders.Count <= 0 ? Visibility.Visible : Visibility.Hidden;
-                    }
-                }
-                return Visibility.Visible;
             }
         }
 

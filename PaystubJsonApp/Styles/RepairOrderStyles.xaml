@@ -58,6 +58,9 @@
 
 	<Style TargetType="Border" x:Key="RO-items-control-border">
 		<Setter Property="Padding" Value="4"/>
+		<Setter Property="BorderBrush" Value="{StaticResource main-border-brush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="Background" Value="{StaticResource base-box-bg-brush}"/>
 	</Style>
 	
 	<Style TargetType="Border" x:Key="RO-item-work-base-border" BasedOn="{StaticResource RO-item-border-spacing}">

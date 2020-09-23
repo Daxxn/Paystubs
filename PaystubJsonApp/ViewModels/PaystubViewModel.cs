@@ -118,17 +118,20 @@ namespace PaystubJsonApp.ViewModels
         #region Calculation Methods
         public void Calculate( object sender, EventArgs e )
         {
-            Calc(CalcType.Average, Prop.Gross);
-            Calc(CalcType.Average, Prop.Net);
-            Calc(CalcType.Average, Prop.Hours);
-            Calc(CalcType.Average, Prop.Flat);
+            if ( PaystubCollection.Paystubs != null && PaystubCollection.Paystubs.Count > 0 )
+            {
+                Calc(CalcType.Average, Prop.Gross);
+                Calc(CalcType.Average, Prop.Net);
+                Calc(CalcType.Average, Prop.Hours);
+                Calc(CalcType.Average, Prop.Flat);
 
-            Calc(CalcType.Sum, Prop.Gross);
-            Calc(CalcType.Sum, Prop.Net);
-            Calc(CalcType.Sum, Prop.Hours);
-            Calc(CalcType.Sum, Prop.Flat);
+                Calc(CalcType.Sum, Prop.Gross);
+                Calc(CalcType.Sum, Prop.Net);
+                Calc(CalcType.Sum, Prop.Hours);
+                Calc(CalcType.Sum, Prop.Flat);
 
-            UpdateFilter();
+                UpdateFilter();
+            }
         }
 
         private void Calc( CalcType type, Prop propName )
